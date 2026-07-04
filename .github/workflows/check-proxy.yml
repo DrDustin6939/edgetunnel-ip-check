@@ -1,0 +1,144 @@
+name: Daily Proxy Check
+
+on:
+  schedule:
+    # 每天北京时间 8:00 (UTC 0:00) 运行
+    - cron: '0 0 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  check-proxies:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check proxies
+        env:
+          PROXY_IPS: ${{ secrets.PROXY_IPS }}
+          WORKER_URL: ${{ secrets.WORKER_URL }}
+        run: |
+          # ==================== 预处理输入 ====================
+          echo "$PROXY_IPS" | tr ',' '\n' | sed 's/^[[:space:]]*//;s/[[:space:]]*$//' | grep -v '^$' > /tmp/input.txt
+
+          TOTAL=$(wc -l < /tmp/input.txt | tr -d ' ')
+          echo "共 $TOTAL 条待检测代理"
+
+          # 提取 IP:PORT（# 之前的部分），构建 JSON 数组
+          IPS_JSON=$(sed 's/#.*//' /tmp/input.txt | sed 's/[[:space:]]*$//' | grep -v '^$' | jq -R -s 'split("\n") | map(select(. != ""))')
+
+          COUNT=$(echo "$IPS_JSON" | jq 'length')
+          echo "有效候选数: $COUNT"
+
+          # ==================== 调用 Worker API ====================
+          RESPONSE=$(curl -s -X POST "${WORKER_URL}/check" \
+            -H "Content-Type: application/json" \
+            -d "{\"proxyips\": $IPS_JSON}")
+
+          echo "API 响应已获取"
+
+          # ==================== 生成 proxies.txt（成功代理的原始行） ====================
+          echo "$RESPONSE" | jq -r '
+            if type == "array" then .[] else . end | select(.success == true) | .candidate
+          ' > /tmp/success_candidates.txt
+
+          > proxies.txt
+          while IFS= read -r candidate; do
+            [ -z "$candidate" ] && continue
+            grep -F -m1 "$candidate" /tmp/input.txt >> proxies.txt || true
+          done < /tmp/success_candidates.txt
+
+          # ==================== 统计 ====================
+          SUCCESS_COUNT=$(wc -l < proxies.txt | tr -d ' ')
+          FAIL_COUNT=$((TOTAL - SUCCESS_COUNT))
+          if [ "$SUCCESS_COUNT" -gt 0 ]; then
+            SUCCESS_RATE=$(awk "BEGIN {printf \"%.1f\", ($SUCCESS_COUNT/$TOTAL)*100}")
+          else
+            SUCCESS_RATE="0.0"
+          fi
+
+          TIMESTAMP=$(TZ='Asia/Shanghai' date '+%Y-%m-%d %H:%M:%S')
+
+          # ==================== 生成 report.md（详细日报） ====================
+          cat > report.md << REPORT_HEADER
+          # 代理检测日报
+
+          **检测时间**：${TIMESTAMP} (北京时间)
+
+          ## 概况
+
+          | 项目 | 数值 |
+          |------|------|
+          | 检测总数 | ${TOTAL} |
+          | 成功数量 | ${SUCCESS_COUNT} |
+          | 失败数量 | ${FAIL_COUNT} |
+          | 成功率 | ${SUCCESS_RATE}% |
+
+          ---
+
+          REPORT_HEADER
+
+          # ---- 成功代理详情 ----
+          echo "## 成功代理" >> report.md
+          echo "" >> report.md
+          if [ "$SUCCESS_COUNT" -gt 0 ]; then
+            echo "| 代理地址 | 端口 | 协议栈 | IPv4 | IPv6 | 响应时间 |" >> report.md
+            echo "|----------|------|--------|------|------|----------|" >> report.md
+            echo "$RESPONSE" | jq -r '
+              (if type == "array" then .[] else . end | select(.success == true)) as $r |
+              "| \($r.proxyIP) | \($r.portRemote) | \($r.inferred_stack) | \($r.supports_ipv4) | \($r.supports_ipv6) | \($r.responseTime)ms |"
+            ' >> report.md
+          else
+            echo "无" >> report.md
+          fi
+
+          echo "" >> report.md
+          echo "---" >> report.md
+          echo "" >> report.md
+
+          # ---- 成功代理的完整原始行列表 ----
+          if [ "$SUCCESS_COUNT" -gt 0 ]; then
+            echo "## 可用代理列表" >> report.md
+            echo "" >> report.md
+            echo '```' >> report.md
+            cat proxies.txt >> report.md
+            echo '```' >> report.md
+          fi
+
+          echo "" >> report.md
+          echo "---" >> report.md
+          echo "" >> report.md
+
+          # ---- 失败代理详情 ----
+          echo "## 失败代理" >> report.md
+          echo "" >> report.md
+          if [ "$FAIL_COUNT" -gt 0 ]; then
+            echo "| 代理地址 | 失败原因 |" >> report.md
+            echo "|----------|----------|" >> report.md
+            echo "$RESPONSE" | jq -r '
+              (if type == "array" then .[] else . end | select(.success != true)) as $r |
+              "| \($r.candidate) | \($r.error // $r // "未知错误") |"
+            ' >> report.md
+          else
+            echo "无" >> report.md
+          fi
+
+          echo "" >> report.md
+          echo "> 本报告由 GitHub Actions 自动生成，每日 ${TIMESTAMP%% *} 更新。" >> report.md
+
+          # ==================== 输出日志 ====================
+          echo ""
+          echo "=========================================="
+          echo "  检测完成：${TIMESTAMP}"
+          echo "  总数: ${TOTAL}  |  成功: ${SUCCESS_COUNT}  |  失败: ${FAIL_COUNT}  |  成功率: ${SUCCESS_RATE}%"
+          echo "=========================================="
+
+      - name: Commit results
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add proxies.txt report.md
+          git diff --staged --quiet || git commit -m "Daily proxy check update [skip ci]"
+          git push
