@@ -4,6 +4,11 @@ on:
   schedule:
     - cron: '0 0 * * *'
   workflow_dispatch:
+    inputs:
+      concurrency:
+        description: '并发数（每批次检测的IP数量，默认1 = 单线程）'
+        required: false
+        default: '0'
 
 permissions:
   contents: write
@@ -19,18 +24,45 @@ jobs:
         env:
           PROXY_IPS: ${{ secrets.PROXY_IPS }}
           WORKER_URL: ${{ secrets.WORKER_URL }}
-          CONCURRENCY_VAR: ${{ vars.CONCURRENCY }}
-          CONCURRENCY_SECRET: ${{ secrets.CONCURRENCY }}
         run: |
           set -uo pipefail
 
           # ==================== 解析并发数 ====================
-          # 同时兼容 Variable 和 Secret 两种配置方式，默认 1（单线程）
-          RAW="${CONCURRENCY_VAR:-${CONCURRENCY_SECRET:-1}}"
-          CONCURRENCY=$(echo "$RAW" | tr -cd '0-9')
-          : ${CONCURRENCY:=1}
-          [[ "$CONCURRENCY" -lt 1 ]] && CONCURRENCY=1
-          echo "=== 并发数: $CONCURRENCY ==="
+          # 优先级：workflow_dispatch 手动输入 > vars 变量 > secrets 变量 > 默认值 1
+          CONCURRENCY=1
+          RAW=""
+
+          # 1) workflow_dispatch 手动输入（非零才使用）
+          MANUAL_VAL="${{ github.event.inputs.concurrency || '0' }}"
+          if [[ "$MANUAL_VAL" =~ ^[0-9]+$ ]] && [[ "$MANUAL_VAL" -gt 0 ]]; then
+            RAW="$MANUAL_VAL"
+            echo "=== 并发数来源: workflow_dispatch 输入 ==="
+          fi
+
+          # 2) Repository Variables（Settings > Variables）
+          if [[ -z "$RAW" ]]; then
+            VAR_VAL="${{ vars.CONCURRENCY || '' }}"
+            if [[ -n "$VAR_VAL" ]] && [[ "$VAR_VAL" =~ ^[0-9]+$ ]] && [[ "$VAR_VAL" -ge 1 ]]; then
+              RAW="$VAR_VAL"
+              echo "=== 并发数来源: Repository Variables ==="
+            fi
+          fi
+
+          # 3) Repository Secrets（Settings > Secrets）
+          if [[ -z "$RAW" ]]; then
+            SECRET_VAL="${{ secrets.CONCURRENCY || '' }}"
+            if [[ -n "$SECRET_VAL" ]] && [[ "$SECRET_VAL" =~ ^[0-9]+$ ]] && [[ "$SECRET_VAL" -ge 1 ]]; then
+              RAW="$SECRET_VAL"
+              echo "=== 并发数来源: Repository Secrets ==="
+            fi
+          fi
+
+          if [[ -n "$RAW" ]]; then
+            CONCURRENCY="$RAW"
+          else
+            echo "=== 并发数来源: 默认值 ==="
+          fi
+          echo "=== 并发数: $CONCURRENCY（每批次 $CONCURRENCY 个IP）==="
 
           # ==================== 第一步：解析输入 ====================
           printf '%s\n' "$PROXY_IPS" | sed 's/^[[:space:]]*//;s/[[:space:]]*$//' | grep -v '^$' > /tmp/input.txt
@@ -106,18 +138,15 @@ jobs:
 
             if ! echo "$RESPONSE" | jq empty 2>/dev/null; then
               echo "  !!! 批次返回非 JSON: ${RESPONSE:0:200}"
-              # 为每个候选构造失败结果，一次性写入文件（避免循环覆盖）
               RESULTS="[]"
               for c in "${BATCH[@]}"; do
                 RESULTS=$(echo "$RESULTS" | jq --arg cand "$c" '. + [{candidate: $cand, success: false, probe_results: {}}]')
               done
               echo "$RESULTS" > "$BATCH_FILE"
             else
-              # 标准化为数组并保存
               echo "$RESPONSE" | jq -c 'if type == "array" then . else [.] end' > "$BATCH_FILE"
             fi
 
-            # 打印本批次简报
             success_in_batch=$(jq '[.[] | select(.success == true)] | length' "$BATCH_FILE" 2>/dev/null)
             echo "  成功: ${success_in_batch:-0} / ${#BATCH[@]}"
 
