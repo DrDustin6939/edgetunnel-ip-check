@@ -1,8 +1,8 @@
-104.238.151.14:443#JP Ōi AS20473 Vultr Holdings
-108.160.131.197:443#JP Ōi AS20473 Vultr Holdings
-13.158.170.96:443#JP Tokyo AS16509 Amazon.com
-167.179.76.8:443#JP Ōi AS20473 Vultr Holdings
-172.104.120.92:443#JP Tokyo AS63949 Akamai Connected Cloud / Linode
-172.104.80.248:443#JP Tokyo AS63949 Akamai Connected Cloud / Linode
-172.104.81.253:443#JP Tokyo AS63949 Akamai Connected Cloud / Linode
-172.104.86.229:443#JP Tokyo AS63949 Akamai Connected Cloud / Linode
+103.117.103.29:443#JP Tokyo AS906 DMIT Inc.
+103.201.131.64:443#JP Tokyo AS3258 xTom Japan Corporation
+103.201.131.83:443#JP Tokyo AS3258 xTom Japan Corporation
+103.47.186.14:443#JP Azabu-jūban AS3258 Hostsymbol Pte. Ltd.
+103.47.186.4:443#JP Azabu-jūban AS3258 Hostsymbol Pte. Ltd.
+104.105.137.204:443#JP Tokyo AS63949 Linode
+104.238.151.14:443#JP Ōi AS20473 Vultr Holdings, LLC
+108.160.131.197:443#JP Ōi AS20473 Vultr Holdings, LLC
