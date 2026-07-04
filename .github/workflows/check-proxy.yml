@@ -114,17 +114,8 @@ jobs:
           done
 
           # 合并所有批次结果为一个 JSON 数组
-          # 用 jq 合并所有文件
-          ALL_FILES=""
-          for f in /tmp/batch_*.json; do
-            if [[ -z "$ALL_FILES" ]]; then
-              ALL_FILES="$f"
-            else
-              ALL_FILES="$ALL_FILES,$f"
-            fi
-          done
-          # jq -s 将多个数组合并为一个
-          RESPONSE=$(jq -s 'add // []' $ALL_FILES 2>/dev/null || echo "[]")
+          # 直接用 glob 展开，jq -s 接收多个文件参数并合并
+          RESPONSE=$(jq -s 'add // []' /tmp/batch_*.json 2>/dev/null || echo "[]")
 
           # ==================== 第三步：提取成功候选 ====================
           SUCCESS_LIST=$(echo "$RESPONSE" | jq -r '.[] | select(.success == true) | .candidate')
