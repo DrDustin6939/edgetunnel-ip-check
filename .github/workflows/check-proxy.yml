@@ -20,42 +20,53 @@ jobs:
           PROXY_IPS: ${{ secrets.PROXY_IPS }}
           WORKER_URL: ${{ secrets.WORKER_URL }}
         run: |
-          set -euo pipefail
+          # 不使用 set -e，避免 ((0)) 等 bash 陷阱导致意外退出
+          set -uo pipefail
 
-          # ==================== 第一步：解析输入，建立候选 ↔ 原始行映射 ====================
-          # 将逗号或换行分隔的输入规范化，写入临时文件
-          printf '%s\n' "$PROXY_IPS" | tr ',' '\n' | sed 's/^[[:space:]]*//;s/[[:space:]]*$//' | grep -v '^$' > /tmp/input.txt
+          # ==================== 第一步：解析输入 ====================
+          # GitHub Secret 中的换行符会被保留，直接按换行分割
+          # 不用 tr ',' '\n'，因为注释里可能包含逗号（如 "Company, Inc."）
+          # 仅去除每行首尾空白、过滤空行
+          printf '%s\n' "$PROXY_IPS" | sed 's/^[[:space:]]*//;s/[[:space:]]*$//' | grep -v '^$' > /tmp/input.txt
 
           TOTAL=$(wc -l < /tmp/input.txt | tr -d ' ')
           echo "=== 共 $TOTAL 行待处理 ==="
 
-          # 建立候选 → 原始行的精确映射（用 bash 关联数组，避免 grep 子串误匹配）
+          # 建立候选 → 原始行的精确映射（关联数组，杜绝子串误匹配）
           declare -A ORIGINAL_LINE
           CANDIDATES=()
 
           while IFS= read -r line; do
-            # 提取 IP:PORT（# 之前的部分），去除首尾空白
+            # 提取 # 之前的部分作为候选
             candidate="${line%%#*}"
-            # bash 原生去首尾空白
+            # 去首尾空白
             candidate="${candidate#"${candidate%%[![:space:]]*}"}"
             candidate="${candidate%"${candidate##*[![:space:]]}"}"
-
-            # 去掉可能的 socks5:// http:// 等协议前缀
+            # 去协议前缀 socks5:// http:// 等
             candidate="${candidate#*://}"
 
-            # 跳过空候选（纯注释行等）
             if [[ -z "$candidate" ]]; then
-              echo "  [跳过] 无效行: $line"
+              echo "  [跳过] 空行或纯注释: $line"
               continue
             fi
 
-            # 简单校验：至少包含数字或方括号（IP/域名特征），且含冒号（端口分隔符）
-            if [[ "$candidate" =~ [0-9] ]] || [[ "$candidate" == \[* ]]; then
+            # 校验：必须含冒号（端口分隔），且冒号前有内容、冒号后是数字
+            if [[ "$candidate" == \[* ]]; then
+              # IPv6: [addr]:port
+              if [[ "$candidate" =~ ^\[[0-9a-fA-F:]+\]:[0-9]+$ ]]; then
+                CANDIDATES+=("$candidate")
+                ORIGINAL_LINE["$candidate"]="$line"
+                echo "  [识别] $candidate"
+              else
+                echo "  [跳过] IPv6 格式异常: $line"
+              fi
+            elif [[ "$candidate" =~ ^[a-zA-Z0-9._-]+:[0-9]+$ ]]; then
+              # IPv4 或域名:端口
               CANDIDATES+=("$candidate")
               ORIGINAL_LINE["$candidate"]="$line"
               echo "  [识别] $candidate"
             else
-              echo "  [跳过] 无法识别为有效候选: $line"
+              echo "  [跳过] 无法识别: $line"
             fi
           done < /tmp/input.txt
 
@@ -67,8 +78,7 @@ jobs:
             exit 0
           fi
 
-          # ==================== 第二步：构建 JSON 并调用 Worker API ====================
-          # 用 jq 构建 JSON 数组（每个元素是去重后的 IP:PORT）
+          # ==================== 第二步：调用 Worker API ====================
           IPS_JSON=$(printf '%s\n' "${CANDIDATES[@]}" | jq -R -s 'split("\n") | map(select(. != "")) | unique')
 
           echo "=== 调用 Worker API: ${WORKER_URL}/check ==="
@@ -76,8 +86,17 @@ jobs:
             -H "Content-Type: application/json" \
             -d "{\"proxyips\": $IPS_JSON}")
 
+          # 验证 API 响 babysit
+          if ! echo "$RESPONSE" | jq empty 2>/dev/null; then
+            echo "!!! API 返回非 JSON，可能是 Worker 错误或超时"
+            echo "RESPONSE 前200字符: ${RESPONSE:0:200}"
+            # 仍然生成空结果文件，避免后续步骤失败
+            > proxies.txt
+            echo "# API 返回无效 JSON" > report.md
+            exit 1
+          fi
+
           # ==================== 第三步：提取成功候选，回写原始行 ====================
-          # 用 jq 提取所有 success=true 的 candidate
           SUCCESS_LIST=$(echo "$RESPONSE" | jq -r '
             if type == "array" then
               .[] | select(.success == true) | .candidate
@@ -86,7 +105,6 @@ jobs:
             end
           ')
 
-          # 通过关联数组精确查找原始行，写入 proxies.txt
           > proxies.txt
           SUCCESS_COUNT=0
           while IFS= read -r candidate; do
@@ -94,7 +112,8 @@ jobs:
             original="${ORIGINAL_LINE[$candidate]:-}"
             if [[ -n "$original" ]]; then
               echo "$original" >> proxies.txt
-              ((SUCCESS_COUNT++))
+              # 用 $((...)) 替代 ((...))，避免 set -e 下的退出码陷阱
+              SUCCESS_COUNT=$((SUCCESS_COUNT + 1))
             fi
           done <<< "$SUCCESS_LIST"
 
@@ -107,75 +126,64 @@ jobs:
 
           TIMESTAMP=$(TZ='Asia/Shanghai' date '+%Y-%m-%d %H:%M:%S')
 
-          # ==================== 第四步：生成 report.md（详细日报） ====================
-          cat > report.md << 'REPORT_HEADER'
-          # 代理检测日报
+          # ==================== 第四步：生成 report.md ====================
+          {
+            echo "# 代理检测日报"
+            echo ""
+            echo "**检测时间**：${TIMESTAMP} (北京时间)"
+            echo ""
+            echo "## 概况"
+            echo ""
+            echo "| 项目 | 数值 |"
+            echo "|------|------|"
+            echo "| 检测总数 | ${TOTAL} |"
+            echo "| 成功数量 | ${SUCCESS_COUNT} |"
+            echo "| 失败数量 | ${FAIL_COUNT} |"
+            echo "| 成功率 | ${SUCCESS_RATE}% |"
+            echo ""
+            echo "---"
+            echo ""
+            echo "## 成功代理"
+            echo ""
+            if [[ "$SUCCESS_COUNT" -gt 0 ]]; then
+              echo "| 代理地址 | 端口 | 协议栈 | IPv4 | IPv6 | 响应时间 |"
+              echo "|----------|------|--------|------|------|----------|"
+              echo "$RESPONSE" | jq -r '
+                (if type == "array" then .[] else . end | select(.success == true)) as $r |
+                "| \($r.proxyIP) | \($r.portRemote) | \($r.inferred_stack) | \($r.supports_ipv4) | \($r.supports_ipv6) | \($r.responseTime)ms |"
+              '
+            else
+              echo "无"
+            fi
+            echo ""
+            echo "---"
+            echo ""
+            if [[ "$SUCCESS_COUNT" -gt 0 ]]; then
+              echo "## 可用代理列表"
+              echo ""
+              echo '```'
+              cat proxies.txt
+              echo '```'
+              echo ""
+              echo "---"
+              echo ""
+            fi
+            echo "## 失败代理"
+            echo ""
+            if [[ "$FAIL_COUNT" -gt 0 ]]; then
+              echo "| 代理地址 | 失败原因 |"
+              echo "|----------|----------|"
+              echo "$RESPONSE" | jq -r '
+                (if type == "array" then .[] else . end | select(.success != true)) as $r |
+                "| \($r.candidate) | \($r.error // "未知错误") |"
+              '
+            else
+              echo "无"
+            fi
+            echo ""
+            echo "> 本报告由 GitHub Actions 自动生成，每日 ${TIMESTAMP%% *} 更新。"
+          } > report.md
 
-          REPORT_HEADER
-
-          echo "**检测时间**：${TIMESTAMP} (北京时间)" >> report.md
-          echo "" >> report.md
-          echo "## 概况" >> report.md
-          echo "" >> report.md
-          echo "| 项目 | 数值 |" >> report.md
-          echo "|------|------|" >> report.md
-          echo "| 检测总数 | ${TOTAL} |" >> report.md
-          echo "| 成功数量 | ${SUCCESS_COUNT} |" >> report.md
-          echo "| 失败数量 | ${FAIL_COUNT} |" >> report.md
-          echo "| 成功率 | ${SUCCESS_RATE}% |" >> report.md
-          echo "" >> report.md
-          echo "---" >> report.md
-          echo "" >> report.md
-
-          # 成功代理详情
-          echo "## 成功代理" >> report.md
-          echo "" >> report.md
-          if [[ "$SUCCESS_COUNT" -gt 0 ]]; then
-            echo "| 代理地址 | 端口 | 协议栈 | IPv4 | IPv6 | 响应时间 |" >> report.md
-            echo "|----------|------|--------|------|------|----------|" >> report.md
-            echo "$RESPONSE" | jq -r '
-              (if type == "array" then .[] else . end | select(.success == true)) as $r |
-              "| \($r.proxyIP) | \($r.portRemote) | \($r.inferred_stack) | \($r.supports_ipv4) | \($r.supports_ipv6) | \($r.responseTime)ms |"
-            ' >> report.md
-          else
-            echo "无" >> report.md
-          fi
-
-          echo "" >> report.md
-          echo "---" >> report.md
-          echo "" >> report.md
-
-          # 可用代理列表
-          if [[ "$SUCCESS_COUNT" -gt 0 ]]; then
-            echo "## 可用代理列表" >> report.md
-            echo "" >> report.md
-            echo '```' >> report.md
-            cat proxies.txt >> report.md
-            echo '```' >> report.md
-          fi
-
-          echo "" >> report.md
-          echo "---" >> report.md
-          echo "" >> report.md
-
-          # 失败代理详情
-          echo "## 失败代理" >> report.md
-          echo "" >> report.md
-          if [[ "$FAIL_COUNT" -gt 0 ]]; then
-            echo "| 代理地址 | 失败原因 |" >> report.md
-            echo "|----------|----------|" >> report.md
-            echo "$RESPONSE" | jq -r '
-              (if type == "array" then .[] else . end | select(.success != true)) as $r |
-              "| \($r.candidate) | \($r.error // "未知错误") |"
-            ' >> report.md
-          else
-            echo "无" >> report.md
-          fi
-
-          echo "" >> report.md
-          echo "> 本报告由 GitHub Actions 自动生成，每日 ${TIMESTAMP%% *} 更新。" >> report.md
-
-          # ==================== 结果摘要 ====================
           echo ""
           echo "========================================"
           echo "  检测完成：${TIMESTAMP}"
