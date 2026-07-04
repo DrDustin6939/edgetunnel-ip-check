@@ -9,6 +9,7 @@
 - **批量解析**：支持通过 DoH（DNS over HTTPS）解析域名代理的 A/AAAA/TXT 记录
 - **Web 可视化面板**：内置暗色/亮色主题的前端界面，支持地图展示代理地理位置
 - **GitHub Actions 自动化**：每天定时检测，自动生成可用代理列表和详细检测日报
+- **并发控制**：支持通过变量设置并发数，默认单线程逐个检测
 
 ## 工作原理
 
@@ -38,14 +39,20 @@ Worker 内置了一套完整的 TLS 1.2/1.3 客户端实现（基于 Web Crypto 
 
 1. **Fork 或克隆**本仓库到你的 GitHub 账号
 
-2. **设置 Secrets**：进入仓库 **Settings → Secrets and variables → Actions**，添加以下两个 Secrets：
+2. **设置 Secrets**：进入仓库 **Settings → Secrets and variables → Actions → Secrets**，添加以下两个 Secrets：
 
    | Secret 名称 | 说明 | 示例值 |
    |-------------|------|--------|
    | `WORKER_URL` | 你部署的 Worker 地址 | `https://check-proxy.xxx.workers.dev` |
-   | `PROXY_IPS` | 待检测的代理 IP 列表 | 见下方格式说明 |
+   | `PROXY_IPS` | 待检测的代理 IP 列表（换行分隔） | 见下方格式说明 |
 
-3. **`PROXY_IPS` 格式**：每行一个代理，支持 `#` 后跟备注信息（地区、运营商等）：
+3. **设置 Variables（可选）**：进入 **Settings → Secrets and variables → Actions → Variables**，添加并发控制变量：
+
+   | Variable 名称 | 说明 | 默认值 |
+   |---------------|------|--------|
+   | `CONCURRENCY` | 每次 API 请求包含的 IP 数量。`1` = 单线程逐个检测，`N` = 每批 N 个并发 | `1` |
+
+4. **`PROXY_IPS` 格式**：每行一个代理，支持 `#` 后跟备注信息（地区、运营商等）：
 
    ```
    221.124.53.3:40001#HK Hong Kong AS9304 HGC Global Communications Limited
@@ -55,9 +62,9 @@ Worker 内置了一套完整的 TLS 1.2/1.3 客户端实现（基于 Web Crypto 
    43.255.156.244:444#HK Tung Chung AS932 VH Global Limited
    ```
 
-   也可以用逗号分隔（单行）：`1.2.3.4:443,5.6.7.8:8080#备注`
+   > 注意：每行一条代理，用换行符分隔。**不要用逗号分隔**，因为备注信息中可能包含逗号（如 `Company, Inc.`）。
 
-4. **手动触发测试**：进入 **Actions** → **Daily Proxy Check** → **Run workflow**
+5. **手动触发测试**：进入 **Actions** → **Daily Proxy Check** → **Run workflow**
 
 ## 文件结构
 
@@ -146,6 +153,18 @@ curl -X POST "https://你的Worker地址/resolve-batch" \
 - **定时运行**：每天 UTC 0:00（北京时间 8:00）
 - **手动触发**：在 Actions 页面点击 `Run workflow`
 
+### 并发控制
+
+通过 `CONCURRENCY` 变量控制每次 API 请求包含的 IP 数量：
+
+| 值 | 行为 | 适用场景 |
+|----|------|----------|
+| `1`（默认） | 单线程：每次只检测 1 个 IP | 精确检测，避免 Worker 超时 |
+| `5` | 每次请求 5 个 IP，Worker 内部 5 个并发 | 平衡速度与稳定性 |
+| `10`+ | 每次请求 10+ 个 IP | 大批量快速检测 |
+
+> 在仓库 **Settings → Secrets and variables → Actions → Variables** 中设置。
+
 ### 输出文件
 
 Action 每次运行后会自动提交两个文件：
@@ -153,7 +172,7 @@ Action 每次运行后会自动提交两个文件：
 | 文件 | 说明 |
 |------|------|
 | `proxies.txt` | 检测成功的代理列表，保留原始输入格式（含备注），每天覆盖 |
-| `report.md` | 详细日报，包含概况统计、成功/失败代理详情表格、可用代理列表 |
+| `report.md` | 详细日报，包含概况统计、成功代理详情、可用代理列表、失败代理探针详情 |
 
 ### `report.md` 日报示例
 
@@ -161,6 +180,7 @@ Action 每次运行后会自动提交两个文件：
 # 代理检测日报
 
 **检测时间**：2026-07-04 08:00:00 (北京时间)
+**并发数**：1
 
 ## 概况
 
@@ -180,21 +200,25 @@ Action 每次运行后会自动提交两个文件：
 
 ## 可用代理列表
 
-\`\`\`
+​```
 221.124.53.3:40001#HK Hong Kong AS9304 HGC Global Communications Limited
 43.255.156.6:444#HK Tung Chung AS932 VH Global Limited
-\`\`\`
+​```
 
-## 失败代理
+## 失败代理详情
 
-| 代理地址 | 失败原因 |
-|----------|----------|
-| 10.0.0.1:443 | tcp connect timeout after 9999ms |
+### 10.0.0.1:443
+
+| 探针 | 状态 | 连接(ms) | TLS(ms) | HTTP(ms) | 状态码 | 错误信息 |
+|------|------|----------|---------|----------|--------|----------|
+| IPv4 | false | 120 | - | - | - | tls handshake timeout after 9999ms |
+| IPv6 | - | - | - | - | - | 未测试 |
 ```
 
 ## 自定义
 
 - **修改检测频率**：编辑 `.github/workflows/check-proxy.yml` 中的 `cron` 表达式
+- **修改并发数**：在仓库 Variables 中设置 `CONCURRENCY` 变量
 - **修改探针目标**：编辑 `worker.js` 中的 `PROBE_TARGETS` 常量
 - **修改超时时间**：编辑 `worker.js` 中的 `DEFAULT_TIMEOUT_MS` 常量
 
