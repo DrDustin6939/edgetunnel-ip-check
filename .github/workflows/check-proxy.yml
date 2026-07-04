@@ -19,49 +19,38 @@ jobs:
         env:
           PROXY_IPS: ${{ secrets.PROXY_IPS }}
           WORKER_URL: ${{ secrets.WORKER_URL }}
+          # 并发数：每次 API 请求包含的 IP 数量。默认 1 = 单线程逐个检测
+          # 设置为 N 则每批 N 个 IP 同时检测（Worker 内部并发）
+          CONCURRENCY: ${{ vars.CONCURRENCY || 1 }}
         run: |
-          # 不使用 set -e，避免 ((0)) 等 bash 陷阱导致意外退出
           set -uo pipefail
 
           # ==================== 第一步：解析输入 ====================
-          # GitHub Secret 中的换行符会被保留，直接按换行分割
-          # 不用 tr ',' '\n'，因为注释里可能包含逗号（如 "Company, Inc."）
-          # 仅去除每行首尾空白、过滤空行
           printf '%s\n' "$PROXY_IPS" | sed 's/^[[:space:]]*//;s/[[:space:]]*$//' | grep -v '^$' > /tmp/input.txt
 
           TOTAL=$(wc -l < /tmp/input.txt | tr -d ' ')
           echo "=== 共 $TOTAL 行待处理 ==="
 
-          # 建立候选 → 原始行的精确映射（关联数组，杜绝子串误匹配）
           declare -A ORIGINAL_LINE
           CANDIDATES=()
 
           while IFS= read -r line; do
-            # 提取 # 之前的部分作为候选
             candidate="${line%%#*}"
-            # 去首尾空白
             candidate="${candidate#"${candidate%%[![:space:]]*}"}"
             candidate="${candidate%"${candidate##*[![:space:]]}"}"
-            # 去协议前缀 socks5:// http:// 等
             candidate="${candidate#*://}"
 
             if [[ -z "$candidate" ]]; then
-              echo "  [跳过] 空行或纯注释: $line"
               continue
             fi
 
-            # 校验：必须含冒号（端口分隔），且冒号前有内容、冒号后是数字
             if [[ "$candidate" == \[* ]]; then
-              # IPv6: [addr]:port
               if [[ "$candidate" =~ ^\[[0-9a-fA-F:]+\]:[0-9]+$ ]]; then
                 CANDIDATES+=("$candidate")
                 ORIGINAL_LINE["$candidate"]="$line"
                 echo "  [识别] $candidate"
-              else
-                echo "  [跳过] IPv6 格式异常: $line"
               fi
             elif [[ "$candidate" =~ ^[a-zA-Z0-9._-]+:[0-9]+$ ]]; then
-              # IPv4 或域名:端口
               CANDIDATES+=("$candidate")
               ORIGINAL_LINE["$candidate"]="$line"
               echo "  [识别] $candidate"
@@ -72,38 +61,73 @@ jobs:
 
           CANDIDATE_COUNT=${#CANDIDATES[@]}
           echo "=== 有效候选: $CANDIDATE_COUNT 个 ==="
+          echo "=== 并发数: $CONCURRENCY ==="
 
           if [[ "$CANDIDATE_COUNT" -eq 0 ]]; then
             echo "没有有效候选，退出"
             exit 0
           fi
 
-          # ==================== 第二步：调用 Worker API ====================
-          IPS_JSON=$(printf '%s\n' "${CANDIDATES[@]}" | jq -R -s 'split("\n") | map(select(. != "")) | unique')
+          # ==================== 第二步：分批调用 Worker API ====================
+          # 每批结果写入独立文件，最后合并（避免子 shell 变量丢失问题）
+          rm -f /tmp/batch_*.json
+          BATCH_SIZE=$((CONCURRENCY < 1 ? 1 : CONCURRENCY))
+          BATCH_NUM=0
+          IDX=0
 
-          echo "=== 调用 Worker API: ${WORKER_URL}/check ==="
-          RESPONSE=$(curl -s --max-time 120 -X POST "${WORKER_URL}/check" \
-            -H "Content-Type: application/json" \
-            -d "{\"proxyips\": $IPS_JSON}")
+          while [[ $IDX -lt $CANDIDATE_COUNT ]]; do
+            BATCH=()
+            END=$((IDX + BATCH_SIZE))
+            if [[ $END -gt $CANDIDATE_COUNT ]]; then
+              END=$CANDIDATE_COUNT
+            fi
+            for J in $(seq $IDX $((END - 1))); do
+              BATCH+=("${CANDIDATES[$J]}")
+            done
 
-          # 验证 API 响 babysit
-          if ! echo "$RESPONSE" | jq empty 2>/dev/null; then
-            echo "!!! API 返回非 JSON，可能是 Worker 错误或超时"
-            echo "RESPONSE 前200字符: ${RESPONSE:0:200}"
-            # 仍然生成空结果文件，避免后续步骤失败
-            > proxies.txt
-            echo "# API 返回无效 JSON" > report.md
-            exit 1
-          fi
+            BATCH_NUM=$((BATCH_NUM + 1))
+            BATCH_TOTAL=$(((CANDIDATE_COUNT + BATCH_SIZE - 1) / BATCH_SIZE))
+            echo "--- 批次 $BATCH_NUM/$BATCH_TOTAL: ${#BATCH[@]} 个候选 ---"
 
-          # ==================== 第三步：提取成功候选，回写原始行 ====================
-          SUCCESS_LIST=$(echo "$RESPONSE" | jq -r '
-            if type == "array" then
-              .[] | select(.success == true) | .candidate
+            BATCH_JSON=$(printf '%s\n' "${BATCH[@]}" | jq -R -s 'split("\n") | map(select(. != "")) | unique')
+
+            RESPONSE=$(curl -s --max-time 120 -X POST "${WORKER_URL}/check" \
+              -H "Content-Type: application/json" \
+              -d "{\"proxyips\": $BATCH_JSON}")
+
+            if ! echo "$RESPONSE" | jq empty 2>/dev/null; then
+              echo "  !!! 批次返回非 JSON: ${RESPONSE:0:200}"
+              # 为每个候选构造失败结果
+              for c in "${BATCH[@]}"; do
+                jq -n --arg cand "$c" '{candidate: $cand, success: false, probe_results: {}}'
+              done > "/tmp/batch_${BATCH_NUM}.json"
             else
-              select(.success == true) | .candidate
-            end
-          ')
+              # 标准化为数组并保存
+              echo "$RESPONSE" | jq -c 'if type == "array" then . else [.] end' > "/tmp/batch_${BATCH_NUM}.json"
+            fi
+
+            # 打印本批次简报
+            success_in_batch=$(jq '[.[] | select(.success == true)] | length' "/tmp/batch_${BATCH_NUM}.json" 2>/dev/null || echo 0)
+            echo "  成功: $success_in_batch / ${#BATCH[@]}"
+
+            IDX=$END
+          done
+
+          # 合并所有批次结果为一个 JSON 数组
+          # 用 jq 合并所有文件
+          ALL_FILES=""
+          for f in /tmp/batch_*.json; do
+            if [[ -z "$ALL_FILES" ]]; then
+              ALL_FILES="$f"
+            else
+              ALL_FILES="$ALL_FILES,$f"
+            fi
+          done
+          # jq -s 将多个数组合并为一个
+          RESPONSE=$(jq -s 'add // []' $ALL_FILES 2>/dev/null || echo "[]")
+
+          # ==================== 第三步：提取成功候选 ====================
+          SUCCESS_LIST=$(echo "$RESPONSE" | jq -r '.[] | select(.success == true) | .candidate')
 
           > proxies.txt
           SUCCESS_COUNT=0
@@ -112,7 +136,6 @@ jobs:
             original="${ORIGINAL_LINE[$candidate]:-}"
             if [[ -n "$original" ]]; then
               echo "$original" >> proxies.txt
-              # 用 $((...)) 替代 ((...))，避免 set -e 下的退出码陷阱
               SUCCESS_COUNT=$((SUCCESS_COUNT + 1))
             fi
           done <<< "$SUCCESS_LIST"
@@ -126,11 +149,15 @@ jobs:
 
           TIMESTAMP=$(TZ='Asia/Shanghai' date '+%Y-%m-%d %H:%M:%S')
 
+          # 准备一个临时文件存放 RESPONSE，避免大 JSON 在命令替换中被截断
+          echo "$RESPONSE" > /tmp/response.json
+
           # ==================== 第四步：生成 report.md ====================
           {
             echo "# 代理检测日报"
             echo ""
             echo "**检测时间**：${TIMESTAMP} (北京时间)"
+            echo "**并发数**：${CONCURRENCY}"
             echo ""
             echo "## 概况"
             echo ""
@@ -148,10 +175,10 @@ jobs:
             if [[ "$SUCCESS_COUNT" -gt 0 ]]; then
               echo "| 代理地址 | 端口 | 协议栈 | IPv4 | IPv6 | 响应时间 |"
               echo "|----------|------|--------|------|------|----------|"
-              echo "$RESPONSE" | jq -r '
-                (if type == "array" then .[] else . end | select(.success == true)) as $r |
+              jq -r '
+                .[] | select(.success == true) as $r |
                 "| \($r.proxyIP) | \($r.portRemote) | \($r.inferred_stack) | \($r.supports_ipv4) | \($r.supports_ipv6) | \($r.responseTime)ms |"
-              '
+              ' /tmp/response.json
             else
               echo "无"
             fi
@@ -168,15 +195,27 @@ jobs:
               echo "---"
               echo ""
             fi
-            echo "## 失败代理"
+            echo "## 失败代理详情"
             echo ""
             if [[ "$FAIL_COUNT" -gt 0 ]]; then
-              echo "| 代理地址 | 失败原因 |"
-              echo "|----------|----------|"
-              echo "$RESPONSE" | jq -r '
-                (if type == "array" then .[] else . end | select(.success != true)) as $r |
-                "| \($r.candidate) | \($r.error // "未知错误") |"
-              '
+              jq -r '
+                .[] | select(.success != true) as $r |
+                "### \($r.candidate)",
+                "",
+                "| 探针 | 状态 | 连接(ms) | TLS(ms) | HTTP(ms) | 状态码 | 错误信息 |",
+                "|------|------|----------|---------|----------|--------|----------|",
+                (if $r.probe_results.ipv4 then
+                  "| IPv4 | \($r.probe_results.ipv4.ok) | \($r.probe_results.ipv4.connect_ms // "-") | \($r.probe_results.ipv4.tls_ms // "-") | \($r.probe_results.ipv4.http_ms // "-") | \($r.probe_results.ipv4.status_code // "-") | \($r.probe_results.ipv4.error // "-") |"
+                else
+                  "| IPv4 | - | - | - | - | - | 未测试 |"
+                end),
+                (if $r.probe_results.ipv6 then
+                  "| IPv6 | \($r.probe_results.ipv6.ok) | \($r.probe_results.ipv6.connect_ms // "-") | \($r.probe_results.ipv6.tls_ms // "-") | \($r.probe_results.ipv6.http_ms // "-") | \($r.probe_results.ipv6.status_code // "-") | \($r.probe_results.ipv6.error // "-") |"
+                else
+                  "| IPv6 | - | - | - | - | - | 未测试 |"
+                end),
+                ""
+              ' /tmp/response.json
             else
               echo "无"
             fi
