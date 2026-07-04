@@ -19,16 +19,17 @@ jobs:
         env:
           PROXY_IPS: ${{ secrets.PROXY_IPS }}
           WORKER_URL: ${{ secrets.WORKER_URL }}
-          CONCURRENCY_INPUT: ${{ vars.CONCURRENCY }}
+          CONCURRENCY_VAR: ${{ vars.CONCURRENCY }}
+          CONCURRENCY_SECRET: ${{ secrets.CONCURRENCY }}
         run: |
           set -uo pipefail
 
           # ==================== 解析并发数 ====================
-          # 从变量读取并发数，默认 1（单线程）。容错处理空值/非数字。
-          CONCURRENCY=1
-          if [[ -n "${CONCURRENCY_INPUT:-}" ]] && [[ "${CONCURRENCY_INPUT}" =~ ^[0-9]+$ ]] && [[ "${CONCURRENCY_INPUT}" -ge 1 ]]; then
-            CONCURRENCY="${CONCURRENCY_INPUT}"
-          fi
+          # 同时兼容 Variable 和 Secret 两种配置方式，默认 1（单线程）
+          RAW="${CONCURRENCY_VAR:-${CONCURRENCY_SECRET:-1}}"
+          CONCURRENCY=$(echo "$RAW" | tr -cd '0-9')
+          : ${CONCURRENCY:=1}
+          [[ "$CONCURRENCY" -lt 1 ]] && CONCURRENCY=1
           echo "=== 并发数: $CONCURRENCY ==="
 
           # ==================== 第一步：解析输入 ====================
