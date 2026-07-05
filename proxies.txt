@@ -30,9 +30,6 @@
 34.153.210.22:443#JP Tokyo AS396982 Google LLC
 35.75.55.100:443#JP Tokyo AS16509 Amazon Data Services Japan
 45.129.8.76:443#JP Tokyo AS3258 xTom Japan Corporation
-45.143.233.218:443#JP Tokyo AS3258 xTom Japan Corporation
-45.143.234.164:443#JP Tokyo AS3258 xTom Japan Corporation
-45.251.240.205:443#JP Osaka AS4785 Hongkong Wen Jing Network Limited
 64.176.42.143:443#JP Osaka AS20473 The Constant Company, LLC
 66.42.37.41:443#JP Ōi AS20473 Vultr Holdings, LLC
 92.113.142.47:443#JP Kanda-jinbōchō AS36530 Private Customer
@@ -43,18 +40,22 @@
 45.76.194.232:443#JP Ōi AS20473 Vultr Holdings, LLC
 45.76.208.253:443#JP Ōi AS20473 Vultr Holdings, LLC
 133.18.140.38:443#JP Sugai AS24282 KAGOYA JAPAN Inc.
+141.147.174.243:443#JP Inzai AS31898 Oracle Corporation
+142.248.139.180:443#JP Tokyo AS137535 NetFuture Technology LLC
+153.121.76.150:443#JP Tokyo AS9370 SAKURA Internet Inc.
+156.231.113.204:443#JP Tokyo AS61112 AkileCloud LLC
+160.251.171.76:443#JP Osaka AS58791 GMO Internet, Inc.
 142.91.108.54:443#JP Tokyo AS134351 Leaseweb Japan K.K.
 150.230.212.247:443#JP Inzai AS31898 Oracle Corporation
-154.31.113.22:443#JP Tokyo AS906 DMIT Cloud Service - Tokyo
 160.16.62.84:443#JP Tokyo AS9370 SAKURA Internet Inc.
 160.251.210.41:443#JP Osaka AS58791 GMO Internet, Inc.
 161.33.197.118:443#JP Inzai AS31898 Oracle Corporation
 139.162.74.90:4433#JP Tokyo AS63949 Akamai Connected Cloud / Linode
 140.83.50.165:443#JP Osaka AS13335 Cloudflare London, LLC
+151.241.128.175:443#JP Tokyo AS11161 DIAMOND IP BROKERS FZCO
 151.241.129.141:443#JP Kanda-jinbōchō AS36530 Private Customer
 153.121.45.101:443#JP Tokyo AS9370 SAKURA Internet Inc.
 158.101.139.31:7000#JP Inzai AS31898 Oracle Public Cloud
-161.248.63.77:443#JP Tokyo AS215355 Alice Networks LTD
 192.243.127.102:443#JP Osaka AS25820 IT7 Networks Inc
 212.135.210.195:14430#JP Ebara AS216211 CYBERJET PTE. LTD.
 38.207.130.136:443#JP Tokyo AS61112 Nearoute Limited
@@ -82,6 +83,7 @@
 172.237.30.89:449#JP Tokyo AS63949 Linode
 212.135.211.175:6868#JP Ebara AS216211 CYBERJET PTE. LTD.
 103.201.131.64:443#JP Tokyo AS3258 xTom Japan Corporation
+103.201.131.83:443#JP Tokyo AS3258 xTom Japan Corporation
 103.47.186.14:443#JP Azabu-jūban AS3258 Hostsymbol Pte. Ltd.
 103.47.186.4:443#JP Azabu-jūban AS3258 Hostsymbol Pte. Ltd.
 104.105.137.204:443#JP Tokyo AS63949 Linode
