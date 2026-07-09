@@ -7,11 +7,20 @@
 172.104.80.248:443#JP Tokyo AS63949 Akamai Connected Cloud / Linode
 172.104.81.253:443#JP Tokyo AS63949 Akamai Connected Cloud / Linode
 172.104.86.229:443#JP Tokyo AS63949 Akamai Connected Cloud / Linode
+155.248.181.189:443#JP Inzai AS31898 Oracle Public Cloud
+158.51.110.12:443#JP Kanda-jinbōchō AS18526 DDPS Networks, LLC
+160.16.57.18:443#JP Tokyo AS9370 SAKURA Internet Inc.
+160.16.59.9:443#JP Tokyo AS9370 SAKURA Internet Inc.
+160.191.40.158:443#JP Tokyo AS153371 BACK WAVES LIMITED
+161.248.254.27:443#JP Tokyo AS136557 SmartHost LLC
 185.200.64.104:443#JP Tokyo AS3258 xTom Japan Corporation
 20.78.144.137:443#JP Osaka AS8075 Microsoft Corporation
 202.144.195.97:443#JP Tokyo AS63916 Techavenue International Ltd
 202.182.118.182:443#JP Ōi AS20473 Vultr Holdings, LLC
+23.27.169.196:443#JP Tokyo AS149440 Evoxt.com
+23.27.169.249:443#JP Tokyo AS149440 Evoxt.com
 45.129.8.76:443#JP Tokyo AS3258 xTom Japan Corporation
+64.176.42.143:443#JP Osaka AS20473 The Constant Company, LLC
 66.42.37.41:443#JP Ōi AS20473 Vultr Holdings, LLC
 153.121.32.71:443#JP Tokyo AS9370 SAKURA Internet Inc.
 198.13.60.163:443#JP Ōi AS20473 The Constant Company, LLC
@@ -21,7 +30,6 @@
 45.76.208.253:443#JP Ōi AS20473 Vultr Holdings, LLC
 45.77.21.148:443#JP Ōi AS20473 Vultr Holdings, LLC
 133.18.140.38:443#JP Sugai AS24282 KAGOYA JAPAN Inc.
-141.147.174.243:443#JP Inzai AS31898 Oracle Corporation
 142.91.108.54:443#JP Tokyo AS134351 Leaseweb Japan K.K.
 150.230.212.247:443#JP Inzai AS31898 Oracle Corporation
 154.31.113.22:443#JP Tokyo AS906 DMIT Cloud Service - Tokyo
@@ -59,7 +67,6 @@
 172.237.30.89:449#JP Tokyo AS63949 Linode
 212.135.211.175:6868#JP Ebara AS216211 CYBERJET PTE. LTD.
 103.201.131.64:443#JP Tokyo AS3258 xTom Japan Corporation
-103.201.131.83:443#JP Tokyo AS3258 xTom Japan Corporation
 103.47.186.14:443#JP Azabu-jūban AS3258 Hostsymbol Pte. Ltd.
 103.47.186.4:443#JP Azabu-jūban AS3258 Hostsymbol Pte. Ltd.
 104.105.137.204:443#JP Tokyo AS63949 Linode
