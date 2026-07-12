@@ -1,7 +1,7 @@
 104.238.151.14:443#JP Ōi AS20473 Vultr Holdings, LLC
 108.160.131.197:443#JP Ōi AS20473 Vultr Holdings, LLC
 13.158.170.96:443#JP Tokyo AS16509 Amazon.com, Inc.
-167.179.76.8:443#JP Ōi AS20473 Vultr Holdings, LLC
+156.226.168.122:8001#JP Tokyo AS61112 AkileCloud LLC
 172.104.120.92:443#JP Tokyo AS63949 Akamai Connected Cloud / Linode
 172.104.80.248:443#JP Tokyo AS63949 Akamai Connected Cloud / Linode
 172.104.81.253:443#JP Tokyo AS63949 Akamai Connected Cloud / Linode
@@ -10,7 +10,6 @@
 202.144.195.97:443#JP Tokyo AS63916 Techavenue International Ltd
 202.182.118.182:443#JP Ōi AS20473 Vultr Holdings, LLC
 45.129.8.76:443#JP Tokyo AS3258 xTom Japan Corporation
-64.176.42.143:443#JP Osaka AS20473 The Constant Company, LLC
 66.42.37.41:443#JP Ōi AS20473 Vultr Holdings, LLC
 153.121.32.71:443#JP Tokyo AS9370 SAKURA Internet Inc.
 198.13.60.163:443#JP Ōi AS20473 The Constant Company, LLC
@@ -23,18 +22,13 @@
 160.16.62.84:443#JP Tokyo AS9370 SAKURA Internet Inc.
 160.251.210.41:443#JP Osaka AS58791 GMO Internet, Inc.
 161.33.197.118:443#JP Inzai AS31898 Oracle Corporation
-5.104.83.202:443#JP Ebara AS141995 Contabo Asia Private Limited
-80.96.156.58:443#JP Tokyo AS9009 Virtono Networks SRL
-89.125.244.207:443#JP Tokyo AS26383 Baxet Group Inc.
 139.162.74.90:4433#JP Tokyo AS63949 Akamai Connected Cloud / Linode
 140.83.50.165:443#JP Osaka AS13335 Cloudflare London, LLC
-151.241.128.175:443#JP Tokyo AS11161 DIAMOND IP BROKERS FZCO
 153.121.45.101:443#JP Tokyo AS9370 SAKURA Internet Inc.
 158.101.139.31:7000#JP Inzai AS31898 Oracle Public Cloud
 192.243.127.102:443#JP Osaka AS25820 IT7 Networks Inc
 212.135.210.195:14430#JP Ebara AS216211 CYBERJET PTE. LTD.
 38.207.130.136:443#JP Tokyo AS61112 Nearoute Limited
-45.196.233.37:443#JP Tokyo AS61112 AkileCloud LLC
 138.2.20.58:666#JP Inzai AS31898 Oracle Corporation
 147.79.20.149:9443#JP Kanda-jinbōchō AS51847 ByteVirt LLC
 151.242.74.169:10443#JP Tokyo AS63473 HostHatch Tokyo
@@ -61,7 +55,6 @@
 45.143.233.247:65180#JP Tokyo AS3258 xTom Japan Corporation
 103.47.186.14:443#JP Azabu-jūban AS3258 Hostsymbol Pte. Ltd.
 103.47.186.4:443#JP Azabu-jūban AS3258 Hostsymbol Pte. Ltd.
-104.105.137.204:443#JP Tokyo AS63949 Linode
 132.145.126.33:443#JP Inzai AS31898 Oracle Public Cloud
 14.137.235.132:443#JP Tokyo AS2497 BACK WAVES LIMITED
 142.248.136.72:443#JP Tokyo AS137535 NetFuture Technology LLC
@@ -70,4 +63,3 @@
 151.145.78.30:443#JP Inzai AS31898 Oracle Corporation
 154.19.186.134:443#JP Monzen-nakachō AS149042 Silicon Cloud Tokyo LLC
 154.19.187.39:443#JP Monzen-nakachō AS149042 Silicon Cloud Tokyo LLC
-154.36.155.155:443#JP Ebara AS979 PSINet, Inc.
