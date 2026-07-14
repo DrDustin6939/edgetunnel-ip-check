@@ -8,12 +8,11 @@
 172.104.86.229:443#JP Tokyo AS63949 Akamai Connected Cloud / Linode
 155.248.181.189:443#JP Inzai AS31898 Oracle Public Cloud
 185.200.64.104:443#JP Tokyo AS3258 xTom Japan Corporation
-202.144.195.97:443#JP Tokyo AS63916 Techavenue International Ltd
-202.182.118.182:443#JP Ōi AS20473 Vultr Holdings, LLC
 45.129.8.76:443#JP Tokyo AS3258 xTom Japan Corporation
 64.176.42.143:443#JP Osaka AS20473 The Constant Company, LLC
 66.42.37.41:443#JP Ōi AS20473 Vultr Holdings, LLC
 153.121.32.71:443#JP Tokyo AS9370 SAKURA Internet Inc.
+188.253.118.174:443#JP Tokyo AS38136 Akari Networks (Tokyo)
 198.13.60.163:443#JP Ōi AS20473 The Constant Company, LLC
 207.148.108.85:443#JP Ōi AS20473 Vultr Holdings, LLC
 207.148.112.179:443#JP Ōi AS20473 The Constant Company, LLC
@@ -24,6 +23,9 @@
 160.16.62.84:443#JP Tokyo AS9370 SAKURA Internet Inc.
 160.251.210.41:443#JP Osaka AS58791 GMO Internet, Inc.
 161.33.197.118:443#JP Inzai AS31898 Oracle Corporation
+5.104.83.202:443#JP Ebara AS141995 Contabo Asia Private Limited
+80.96.156.58:443#JP Tokyo AS9009 Virtono Networks SRL
+89.125.244.207:443#JP Tokyo AS26383 Baxet Group Inc.
 139.162.74.90:4433#JP Tokyo AS63949 Akamai Connected Cloud / Linode
 140.83.50.165:443#JP Osaka AS13335 Cloudflare London, LLC
 153.121.45.101:443#JP Tokyo AS9370 SAKURA Internet Inc.
@@ -42,6 +44,7 @@
 203.137.194.19:57778#JP Tokyo AS4694 IDC Frontier Inc.
 45.192.249.122:40001#JP Tokyo AS61112 Akile LTD
 64.176.42.196:10443#JP Osaka AS20473 The Constant Company, LLC
+85.121.122.66:88#JP Kanda-jinbōchō AS9009 Urban Network Solutions SRL
 139.162.83.106:20205#JP Tokyo AS63949 Akamai Connected Cloud / Linode
 139.162.83.190:20205#JP Tokyo AS63949 Akamai Connected Cloud / Linode
 140.83.63.132:10126#JP Osaka AS31898 Oracle Corporation
@@ -50,7 +53,6 @@
 154.36.153.189:4432#JP Ebara AS979 PSINet, Inc.
 154.36.181.182:6066#JP Tokyo AS209557 Geelinx WAN @ Tokyo, Japan
 155.248.177.246:50443#JP Inzai AS31898 Oracle Public Cloud
-172.104.110.10:555#JP Tokyo AS63949 Linode
 172.237.30.89:449#JP Tokyo AS63949 Linode
 212.135.211.175:6868#JP Ebara AS216211 CYBERJET PTE. LTD.
 45.143.233.247:65180#JP Tokyo AS3258 xTom Japan Corporation
@@ -62,5 +64,4 @@
 147.79.20.197:443#JP Kanda-jinbōchō AS51847 ByteVirt LLC
 150.230.107.220:443#JP Inzai AS31898 Oracle Corporation
 151.145.78.30:443#JP Inzai AS31898 Oracle Corporation
-154.19.186.134:443#JP Monzen-nakachō AS149042 Silicon Cloud Tokyo LLC
 154.19.187.39:443#JP Monzen-nakachō AS149042 Silicon Cloud Tokyo LLC
