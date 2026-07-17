@@ -1,14 +1,10 @@
 104.238.151.14:443#JP Ōi AS20473 Vultr Holdings, LLC
 108.160.131.197:443#JP Ōi AS20473 Vultr Holdings, LLC
-13.158.170.96:443#JP Tokyo AS16509 Amazon.com, Inc.
 156.226.168.122:8001#JP Tokyo AS61112 AkileCloud LLC
-172.104.120.92:443#JP Tokyo AS63949 Akamai Connected Cloud / Linode
-172.104.80.248:443#JP Tokyo AS63949 Akamai Connected Cloud / Linode
-172.104.81.253:443#JP Tokyo AS63949 Akamai Connected Cloud / Linode
-172.104.86.229:443#JP Tokyo AS63949 Akamai Connected Cloud / Linode
 155.248.181.189:443#JP Inzai AS31898 Oracle Public Cloud
 185.200.64.104:443#JP Tokyo AS3258 xTom Japan Corporation
 45.129.8.76:443#JP Tokyo AS3258 xTom Japan Corporation
+45.251.240.205:443#JP Osaka AS4785 Hongkong Wen Jing Network Limited
 64.176.42.143:443#JP Osaka AS20473 The Constant Company, LLC
 66.42.37.41:443#JP Ōi AS20473 Vultr Holdings, LLC
 153.121.32.71:443#JP Tokyo AS9370 SAKURA Internet Inc.
@@ -23,12 +19,8 @@
 160.16.62.84:443#JP Tokyo AS9370 SAKURA Internet Inc.
 160.251.210.41:443#JP Osaka AS58791 GMO Internet, Inc.
 161.33.197.118:443#JP Inzai AS31898 Oracle Corporation
-5.104.83.202:443#JP Ebara AS141995 Contabo Asia Private Limited
-80.96.156.58:443#JP Tokyo AS9009 Virtono Networks SRL
-89.125.244.207:443#JP Tokyo AS26383 Baxet Group Inc.
 139.162.74.90:4433#JP Tokyo AS63949 Akamai Connected Cloud / Linode
 140.83.50.165:443#JP Osaka AS13335 Cloudflare London, LLC
-151.241.128.175:443#JP Tokyo AS11161 DIAMOND IP BROKERS FZCO
 153.121.45.101:443#JP Tokyo AS9370 SAKURA Internet Inc.
 158.101.139.31:7000#JP Inzai AS31898 Oracle Public Cloud
 192.243.127.102:443#JP Osaka AS25820 IT7 Networks Inc
@@ -58,7 +50,6 @@
 212.135.211.175:6868#JP Ebara AS216211 CYBERJET PTE. LTD.
 45.143.233.247:65180#JP Tokyo AS3258 xTom Japan Corporation
 103.47.186.14:443#JP Azabu-jūban AS3258 Hostsymbol Pte. Ltd.
-103.47.186.4:443#JP Azabu-jūban AS3258 Hostsymbol Pte. Ltd.
 132.145.126.33:443#JP Inzai AS31898 Oracle Public Cloud
 14.137.235.132:443#JP Tokyo AS2497 BACK WAVES LIMITED
 142.248.136.72:443#JP Tokyo AS137535 NetFuture Technology LLC
