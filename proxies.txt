@@ -19,6 +19,9 @@
 160.16.62.84:443#JP Tokyo AS9370 SAKURA Internet Inc.
 160.251.210.41:443#JP Osaka AS58791 GMO Internet, Inc.
 161.33.197.118:443#JP Inzai AS31898 Oracle Corporation
+5.104.83.202:443#JP Ebara AS141995 Contabo Asia Private Limited
+80.96.156.58:443#JP Tokyo AS9009 Virtono Networks SRL
+89.125.244.207:443#JP Tokyo AS26383 Baxet Group Inc.
 139.162.74.90:4433#JP Tokyo AS63949 Akamai Connected Cloud / Linode
 140.83.50.165:443#JP Osaka AS13335 Cloudflare London, LLC
 153.121.45.101:443#JP Tokyo AS9370 SAKURA Internet Inc.
@@ -51,7 +54,6 @@
 45.143.233.247:65180#JP Tokyo AS3258 xTom Japan Corporation
 103.47.186.14:443#JP Azabu-jūban AS3258 Hostsymbol Pte. Ltd.
 132.145.126.33:443#JP Inzai AS31898 Oracle Public Cloud
-14.137.235.132:443#JP Tokyo AS2497 BACK WAVES LIMITED
 142.248.136.72:443#JP Tokyo AS137535 NetFuture Technology LLC
 147.79.20.197:443#JP Kanda-jinbōchō AS51847 ByteVirt LLC
 150.230.107.220:443#JP Inzai AS31898 Oracle Corporation
