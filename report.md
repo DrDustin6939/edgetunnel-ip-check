@@ -1,6 +1,6 @@
 # 代理检测日报
 
-**检测时间**：2026-07-18 15:12:47 (北京时间)
+**检测时间**：2026-07-19 15:52:00 (北京时间)
 **并发数**：16
 
 ## 概况
@@ -8,9 +8,9 @@
 | 项目 | 数值 |
 |------|------|
 | 检测总数 | 196 |
-| 成功数量 | 61 |
-| 失败数量 | 135 |
-| 成功率 | 31.1% |
+| 成功数量 | 57 |
+| 失败数量 | 139 |
+| 成功率 | 29.1% |
 
 ---
 
@@ -18,67 +18,63 @@
 
 | 代理地址 | 端口 | 协议栈 | IPv4 | IPv6 | 响应时间 |
 |----------|------|--------|------|------|----------|
-| 104.238.151.14 | 443 | ipv4_only | true | false | 102ms |
-| 108.160.131.197 | 443 | ipv6_only | false | true | 102ms |
-| 156.226.168.122 | 8001 | ipv6_only | false | true | 260ms |
-| 155.248.181.189 | 443 | ipv4_only | true | false | 1165ms |
-| 185.200.64.104 | 443 | ipv6_only | false | true | 110ms |
-| 45.129.8.76 | 443 | ipv6_only | false | true | 183ms |
-| 45.251.240.205 | 443 | ipv6_only | false | true | 513ms |
-| 64.176.42.143 | 443 | ipv6_only | false | true | 114ms |
-| 66.42.37.41 | 443 | ipv6_only | false | true | 102ms |
-| 153.121.32.71 | 443 | ipv4_only | true | false | 104ms |
-| 188.253.118.174 | 443 | ipv6_only | false | true | 104ms |
-| 198.13.60.163 | 443 | ipv6_only | false | true | 204ms |
-| 207.148.108.85 | 443 | ipv6_only | false | true | 207ms |
-| 207.148.112.179 | 443 | ipv6_only | false | true | 295ms |
-| 133.18.140.38 | 443 | ipv6_only | false | true | 113ms |
-| 142.91.108.54 | 443 | ipv6_only | false | true | 103ms |
-| 150.230.212.247 | 443 | ipv6_only | false | true | 103ms |
-| 154.31.113.22 | 443 | ipv6_only | false | true | 103ms |
-| 160.16.62.84 | 443 | ipv4_only | true | false | 206ms |
-| 160.251.210.41 | 443 | ipv6_only | false | true | 218ms |
-| 161.33.197.118 | 443 | ipv6_only | false | true | 314ms |
-| 5.104.83.202 | 443 | ipv6_only | false | true | 8241ms |
-| 80.96.156.58 | 443 | ipv6_only | false | true | 8444ms |
-| 89.125.244.207 | 443 | ipv4_only | true | false | 8649ms |
-| 139.162.74.90 | 4433 | ipv6_only | false | true | 106ms |
-| 140.83.50.165 | 443 | ipv6_only | false | true | 109ms |
-| 153.121.45.101 | 443 | ipv4_only | true | false | 209ms |
-| 158.101.139.31 | 7000 | ipv4_only | true | false | 425ms |
-| 192.243.127.102 | 443 | ipv4_only | true | false | 745ms |
-| 212.135.210.195 | 14430 | ipv6_only | false | true | 846ms |
-| 38.207.130.136 | 443 | ipv4_only | true | false | 947ms |
-| 45.196.233.37 | 443 | ipv6_only | false | true | 1160ms |
-| 138.2.20.58 | 666 | ipv6_only | false | true | 105ms |
-| 147.79.20.149 | 9443 | ipv6_only | false | true | 170ms |
-| 151.242.74.169 | 10443 | ipv6_only | false | true | 210ms |
-| 155.248.177.246 | 58443 | ipv4_only | true | false | 273ms |
-| 160.16.72.181 | 8081 | ipv4_only | true | false | 371ms |
-| 166.88.95.214 | 51294 | ipv6_only | false | true | 419ms |
-| 202.182.113.114 | 9443 | ipv6_only | false | true | 521ms |
-| 203.137.194.19 | 57778 | ipv4_only | true | false | 589ms |
-| 45.192.249.122 | 40001 | ipv4_only | true | false | 807ms |
-| 64.176.42.196 | 10443 | ipv6_only | false | true | 917ms |
-| 85.121.122.66 | 88 | ipv4_only | true | false | 1024ms |
-| 139.162.83.106 | 20205 | ipv6_only | false | true | 105ms |
-| 139.162.83.190 | 20205 | ipv6_only | false | true | 112ms |
-| 140.83.63.132 | 10126 | ipv6_only | false | true | 112ms |
-| 141.147.152.229 | 23333 | ipv4_only | true | false | 213ms |
-| 147.78.242.33 | 8503 | ipv6_only | false | true | 213ms |
-| 154.36.153.189 | 4432 | ipv4_only | true | false | 387ms |
-| 154.36.181.182 | 6066 | ipv6_only | false | true | 312ms |
-| 155.248.177.246 | 50443 | ipv4_only | true | false | 413ms |
-| 172.237.30.89 | 449 | ipv4_only | true | false | 494ms |
-| 212.135.211.175 | 6868 | ipv6_only | false | true | 510ms |
-| 45.143.233.247 | 65180 | ipv6_only | false | true | 612ms |
-| 103.47.186.14 | 443 | ipv6_only | false | true | 208ms |
-| 132.145.126.33 | 443 | ipv4_only | true | false | 102ms |
-| 142.248.136.72 | 443 | ipv4_only | true | false | 573ms |
-| 147.79.20.197 | 443 | ipv6_only | false | true | 205ms |
-| 150.230.107.220 | 443 | ipv4_only | true | false | 675ms |
-| 151.145.78.30 | 443 | ipv4_only | true | false | 776ms |
-| 154.19.187.39 | 443 | ipv6_only | false | true | 7302ms |
+| 104.238.151.14 | 443 | ipv4_only | true | false | 171ms |
+| 108.160.131.197 | 443 | ipv6_only | false | true | 170ms |
+| 156.226.168.122 | 8001 | ipv6_only | false | true | 389ms |
+| 155.248.181.189 | 443 | ipv4_only | true | false | 3299ms |
+| 45.129.8.76 | 443 | ipv6_only | false | true | 163ms |
+| 45.251.240.205 | 443 | ipv6_only | false | true | 657ms |
+| 64.176.42.143 | 443 | ipv6_only | false | true | 187ms |
+| 66.42.37.41 | 443 | ipv6_only | false | true | 174ms |
+| 153.121.32.71 | 443 | ipv4_only | true | false | 170ms |
+| 188.253.118.174 | 443 | ipv6_only | false | true | 165ms |
+| 198.13.60.163 | 443 | ipv6_only | false | true | 329ms |
+| 207.148.108.85 | 443 | ipv6_only | false | true | 334ms |
+| 207.148.112.179 | 443 | ipv6_only | false | true | 493ms |
+| 133.18.140.38 | 443 | ipv6_only | false | true | 186ms |
+| 142.91.108.54 | 443 | ipv6_only | false | true | 165ms |
+| 150.230.212.247 | 443 | ipv6_only | false | true | 167ms |
+| 154.31.113.22 | 443 | ipv6_only | false | true | 156ms |
+| 160.16.62.84 | 443 | ipv4_only | true | false | 330ms |
+| 160.251.210.41 | 443 | ipv6_only | false | true | 343ms |
+| 161.33.197.118 | 443 | ipv6_only | false | true | 511ms |
+| 139.162.74.90 | 4433 | ipv6_only | false | true | 219ms |
+| 140.83.50.165 | 443 | ipv6_only | false | true | 177ms |
+| 151.241.128.175 | 443 | ipv4_only | true | false | 338ms |
+| 153.121.45.101 | 443 | ipv4_only | true | false | 386ms |
+| 158.101.139.31 | 7000 | ipv4_only | true | false | 756ms |
+| 192.243.127.102 | 443 | ipv4_only | true | false | 1244ms |
+| 212.135.210.195 | 14430 | ipv6_only | false | true | 1305ms |
+| 38.207.130.136 | 443 | ipv4_only | true | false | 1417ms |
+| 45.196.233.37 | 443 | ipv6_only | false | true | 1570ms |
+| 138.2.20.58 | 666 | ipv6_only | false | true | 170ms |
+| 147.79.20.149 | 9443 | ipv6_only | false | true | 680ms |
+| 151.242.74.169 | 10443 | ipv6_only | false | true | 326ms |
+| 155.248.177.246 | 58443 | ipv4_only | true | false | 420ms |
+| 160.16.72.181 | 8081 | ipv4_only | true | false | 666ms |
+| 166.88.95.214 | 51294 | ipv6_only | false | true | 744ms |
+| 202.182.113.114 | 9443 | ipv6_only | false | true | 1006ms |
+| 203.137.194.19 | 57778 | ipv4_only | true | false | 1095ms |
+| 45.192.249.122 | 40001 | ipv4_only | true | false | 1504ms |
+| 64.176.42.196 | 10443 | ipv6_only | false | true | 1681ms |
+| 85.121.122.66 | 88 | ipv4_only | true | false | 1857ms |
+| 139.162.83.106 | 20205 | ipv6_only | false | true | 225ms |
+| 139.162.83.190 | 20205 | ipv6_only | false | true | 222ms |
+| 140.83.63.132 | 10126 | ipv6_only | false | true | 173ms |
+| 141.147.152.229 | 23333 | ipv4_only | true | false | 346ms |
+| 147.78.242.33 | 8503 | ipv6_only | false | true | 387ms |
+| 154.36.153.189 | 4432 | ipv4_only | true | false | 530ms |
+| 154.36.181.182 | 6066 | ipv6_only | false | true | 540ms |
+| 155.248.177.246 | 50443 | ipv4_only | true | false | 663ms |
+| 172.237.30.89 | 449 | ipv4_only | true | false | 759ms |
+| 212.135.211.175 | 6868 | ipv6_only | false | true | 827ms |
+| 45.143.233.247 | 65180 | ipv6_only | false | true | 989ms |
+| 132.145.126.33 | 443 | ipv4_only | true | false | 170ms |
+| 14.137.235.132 | 443 | ipv6_only | false | true | 172ms |
+| 142.248.136.72 | 443 | ipv4_only | true | false | 336ms |
+| 147.79.20.197 | 443 | ipv6_only | false | true | 343ms |
+| 150.230.107.220 | 443 | ipv4_only | true | false | 511ms |
+| 151.145.78.30 | 443 | ipv4_only | true | false | 676ms |
 
 ---
 
@@ -89,7 +85,6 @@
 108.160.131.197:443#JP Ōi AS20473 Vultr Holdings, LLC
 156.226.168.122:8001#JP Tokyo AS61112 AkileCloud LLC
 155.248.181.189:443#JP Inzai AS31898 Oracle Public Cloud
-185.200.64.104:443#JP Tokyo AS3258 xTom Japan Corporation
 45.129.8.76:443#JP Tokyo AS3258 xTom Japan Corporation
 45.251.240.205:443#JP Osaka AS4785 Hongkong Wen Jing Network Limited
 64.176.42.143:443#JP Osaka AS20473 The Constant Company, LLC
@@ -106,11 +101,9 @@
 160.16.62.84:443#JP Tokyo AS9370 SAKURA Internet Inc.
 160.251.210.41:443#JP Osaka AS58791 GMO Internet, Inc.
 161.33.197.118:443#JP Inzai AS31898 Oracle Corporation
-5.104.83.202:443#JP Ebara AS141995 Contabo Asia Private Limited
-80.96.156.58:443#JP Tokyo AS9009 Virtono Networks SRL
-89.125.244.207:443#JP Tokyo AS26383 Baxet Group Inc.
 139.162.74.90:4433#JP Tokyo AS63949 Akamai Connected Cloud / Linode
 140.83.50.165:443#JP Osaka AS13335 Cloudflare London, LLC
+151.241.128.175:443#JP Tokyo AS11161 DIAMOND IP BROKERS FZCO
 153.121.45.101:443#JP Tokyo AS9370 SAKURA Internet Inc.
 158.101.139.31:7000#JP Inzai AS31898 Oracle Public Cloud
 192.243.127.102:443#JP Osaka AS25820 IT7 Networks Inc
@@ -139,13 +132,12 @@
 172.237.30.89:449#JP Tokyo AS63949 Linode
 212.135.211.175:6868#JP Ebara AS216211 CYBERJET PTE. LTD.
 45.143.233.247:65180#JP Tokyo AS3258 xTom Japan Corporation
-103.47.186.14:443#JP Azabu-jūban AS3258 Hostsymbol Pte. Ltd.
 132.145.126.33:443#JP Inzai AS31898 Oracle Public Cloud
+14.137.235.132:443#JP Tokyo AS2497 BACK WAVES LIMITED
 142.248.136.72:443#JP Tokyo AS137535 NetFuture Technology LLC
 147.79.20.197:443#JP Kanda-jinbōchō AS51847 ByteVirt LLC
 150.230.107.220:443#JP Inzai AS31898 Oracle Corporation
 151.145.78.30:443#JP Inzai AS31898 Oracle Corporation
-154.19.187.39:443#JP Monzen-nakachō AS149042 Silicon Cloud Tokyo LLC
 ```
 
 ---
@@ -247,8 +239,8 @@
 
 | 探针 | 状态 | 连接(ms) | TLS(ms) | HTTP(ms) | 状态码 | 错误信息 |
 |------|------|----------|---------|----------|--------|----------|
-| IPv4 | false | 103 | - | - | - | TLS Alert: level=2, desc=112 |
-| IPv6 | false | 103 | - | - | - | TLS Alert: level=2, desc=112 |
+| IPv4 | false | 162 | - | - | - | TLS Alert: level=2, desc=112 |
+| IPv6 | false | 168 | - | - | - | TLS Alert: level=2, desc=112 |
 
 ### 156.231.140.176:443
 
@@ -348,6 +340,13 @@
 | IPv4 | false | - | - | - | - | tcp connect timeout after 9999ms |
 | IPv6 | false | - | - | - | - | tcp connect timeout after 9999ms |
 
+### 185.200.64.104:443
+
+| 探针 | 状态 | 连接(ms) | TLS(ms) | HTTP(ms) | 状态码 | 错误信息 |
+|------|------|----------|---------|----------|--------|----------|
+| IPv4 | false | - | - | - | - | tcp connect timeout after 9999ms |
+| IPv6 | false | - | - | - | - | tcp connect timeout after 9999ms |
+
 ### 192.243.123.44:443
 
 | 探针 | 状态 | 连接(ms) | TLS(ms) | HTTP(ms) | 状态码 | 错误信息 |
@@ -366,16 +365,8 @@
 
 | 探针 | 状态 | 连接(ms) | TLS(ms) | HTTP(ms) | 状态码 | 错误信息 |
 |------|------|----------|---------|----------|--------|----------|
-| IPv4 | false | 213 | 5116 | 208 | 400 | unexpected status: 400 body: <HTML><HEAD>
-<TITLE>Invalid URL</TITLE>
-</HEAD><BODY>
-<H1>Invalid URL</H1>
-The requested URL "&#91;no&#32;URL&#93;", is  |
-| IPv6 | false | 213 | 5116 | 204 | 400 | unexpected status: 400 body: <HTML><HEAD>
-<TITLE>Invalid URL</TITLE>
-</HEAD><BODY>
-<H1>Invalid URL</H1>
-The requested URL "&#91;no&#32;URL&#93;", is  |
+| IPv4 | false | - | - | - | - | tcp connect timeout after 9999ms |
+| IPv6 | false | - | - | - | - | tcp connect timeout after 9999ms |
 
 ### 202.144.195.97:443
 
@@ -486,12 +477,12 @@ The requested URL "&#91;no&#32;URL&#93;", is  |
 
 | 探针 | 状态 | 连接(ms) | TLS(ms) | HTTP(ms) | 状态码 | 错误信息 |
 |------|------|----------|---------|----------|--------|----------|
-| IPv4 | false | 382 | 113 | 208 | 400 | unexpected status: 400 body: <HTML><HEAD>
+| IPv4 | false | 493 | 206 | 352 | 400 | unexpected status: 400 body: <HTML><HEAD>
 <TITLE>Invalid URL</TITLE>
 </HEAD><BODY>
 <H1>Invalid URL</H1>
 The requested URL "&#91;no&#32;URL&#93;", is  |
-| IPv6 | false | 419 | 110 | 211 | 400 | unexpected status: 400 body: <HTML><HEAD>
+| IPv6 | false | 491 | 208 | 332 | 400 | unexpected status: 400 body: <HTML><HEAD>
 <TITLE>Invalid URL</TITLE>
 </HEAD><BODY>
 <H1>Invalid URL</H1>
@@ -774,8 +765,8 @@ The requested URL "&#91;no&#32;URL&#93;", is  |
 
 | 探针 | 状态 | 连接(ms) | TLS(ms) | HTTP(ms) | 状态码 | 错误信息 |
 |------|------|----------|---------|----------|--------|----------|
-| IPv4 | false | 299 | 102 | - | - | http read timeout after 9999ms |
-| IPv6 | false | 300 | 101 | - | - | http read timeout after 9999ms |
+| IPv4 | false | 485 | 157 | - | - | http read timeout after 9999ms |
+| IPv6 | false | 485 | 153 | - | - | http read timeout after 9999ms |
 
 ### 212.135.212.33:443
 
@@ -788,17 +779,38 @@ The requested URL "&#91;no&#32;URL&#93;", is  |
 
 | 探针 | 状态 | 连接(ms) | TLS(ms) | HTTP(ms) | 状态码 | 错误信息 |
 |------|------|----------|---------|----------|--------|----------|
-| IPv4 | false | - | - | - | - | proxy request failed, cannot connect to the specified address. It looks like you might be trying to connect to a HTTP-based service — consider using fetch instead |
+| IPv4 | false | - | - | - | - | tcp connect timeout after 9999ms |
 | IPv6 | false | - | - | - | - | tcp connect timeout after 9999ms |
 
 ### 31.57.172.176:443
 
 | 探针 | 状态 | 连接(ms) | TLS(ms) | HTTP(ms) | 状态码 | 错误信息 |
 |------|------|----------|---------|----------|--------|----------|
-| IPv4 | false | 502 | - | - | - | TLS Alert: level=2, desc=80 |
-| IPv6 | false | 503 | - | - | - | TLS Alert: level=2, desc=80 |
+| IPv4 | false | 820 | - | - | - | TLS Alert: level=2, desc=80 |
+| IPv6 | false | 821 | - | - | - | TLS Alert: level=2, desc=80 |
 
 ### 47.79.37.210:443
+
+| 探针 | 状态 | 连接(ms) | TLS(ms) | HTTP(ms) | 状态码 | 错误信息 |
+|------|------|----------|---------|----------|--------|----------|
+| IPv4 | false | - | - | - | - | tcp connect timeout after 9999ms |
+| IPv6 | false | - | - | - | - | tcp connect timeout after 9999ms |
+
+### 5.104.83.202:443
+
+| 探针 | 状态 | 连接(ms) | TLS(ms) | HTTP(ms) | 状态码 | 错误信息 |
+|------|------|----------|---------|----------|--------|----------|
+| IPv4 | false | - | - | - | - | tcp connect timeout after 9999ms |
+| IPv6 | false | - | - | - | - | tcp connect timeout after 9999ms |
+
+### 80.96.156.58:443
+
+| 探针 | 状态 | 连接(ms) | TLS(ms) | HTTP(ms) | 状态码 | 错误信息 |
+|------|------|----------|---------|----------|--------|----------|
+| IPv4 | false | - | - | - | - | tcp connect timeout after 9999ms |
+| IPv6 | false | - | - | - | - | tcp connect timeout after 9999ms |
+
+### 89.125.244.207:443
 
 | 探针 | 状态 | 连接(ms) | TLS(ms) | HTTP(ms) | 状态码 | 错误信息 |
 |------|------|----------|---------|----------|--------|----------|
@@ -819,13 +831,6 @@ The requested URL "&#91;no&#32;URL&#93;", is  |
 | IPv4 | false | - | - | - | - | proxy request failed, cannot connect to the specified address. It looks like you might be trying to connect to a HTTP-based service — consider using fetch instead |
 | IPv6 | false | - | - | - | - | proxy request failed, cannot connect to the specified address. It looks like you might be trying to connect to a HTTP-based service — consider using fetch instead |
 
-### 151.241.128.175:443
-
-| 探针 | 状态 | 连接(ms) | TLS(ms) | HTTP(ms) | 状态码 | 错误信息 |
-|------|------|----------|---------|----------|--------|----------|
-| IPv4 | false | 199 | - | - | - | Connection closed waiting for ServerHello |
-| IPv6 | false | 199 | - | - | - | Connection closed waiting for ServerHello |
-
 ### 151.241.129.141:443
 
 | 探针 | 状态 | 连接(ms) | TLS(ms) | HTTP(ms) | 状态码 | 错误信息 |
@@ -844,15 +849,15 @@ The requested URL "&#91;no&#32;URL&#93;", is  |
 
 | 探针 | 状态 | 连接(ms) | TLS(ms) | HTTP(ms) | 状态码 | 错误信息 |
 |------|------|----------|---------|----------|--------|----------|
-| IPv4 | false | 297 | 512 | 409 | 404 | unexpected status: 404 body: Not Found |
-| IPv6 | false | 305 | 531 | 418 | 404 | unexpected status: 404 body: Not Found |
+| IPv4 | false | 537 | 597 | 530 | 404 | unexpected status: 404 body: Not Found |
+| IPv6 | false | 556 | 587 | 549 | 404 | unexpected status: 404 body: Not Found |
 
 ### 161.248.63.77:443
 
 | 探针 | 状态 | 连接(ms) | TLS(ms) | HTTP(ms) | 状态码 | 错误信息 |
 |------|------|----------|---------|----------|--------|----------|
-| IPv4 | false | 526 | 102 | - | - | http read timeout after 9999ms |
-| IPv6 | false | 528 | 109 | - | - | http read timeout after 9999ms |
+| IPv4 | false | 910 | 158 | - | - | http read timeout after 9999ms |
+| IPv6 | false | 919 | 162 | - | - | http read timeout after 9999ms |
 
 ### 172.105.212.126:10001
 
@@ -886,8 +891,8 @@ The requested URL "&#91;no&#32;URL&#93;", is  |
 
 | 探针 | 状态 | 连接(ms) | TLS(ms) | HTTP(ms) | 状态码 | 错误信息 |
 |------|------|----------|---------|----------|--------|----------|
-| IPv4 | false | 468 | 599 | 477 | 200 | invalid json response: Unexpected token '<', "<!DOCTYPE "... is not valid JSON |
-| IPv6 | false | 471 | 623 | 492 | 200 | invalid json response: Unexpected token '<', "<!DOCTYPE "... is not valid JSON |
+| IPv4 | false | 841 | 678 | 626 | 200 | invalid json response: Unexpected token '<', "<!DOCTYPE "... is not valid JSON |
+| IPv6 | false | 837 | 653 | 589 | 200 | invalid json response: Unexpected token '<', "<!DOCTYPE "... is not valid JSON |
 
 ### 31.57.172.199:20000
 
@@ -900,8 +905,8 @@ The requested URL "&#91;no&#32;URL&#93;", is  |
 
 | 探针 | 状态 | 连接(ms) | TLS(ms) | HTTP(ms) | 状态码 | 错误信息 |
 |------|------|----------|---------|----------|--------|----------|
-| IPv4 | false | 698 | 116 | 272 | 403 | unexpected status: 403 body: {"type":"https://developers.cloudflare.com/support/troubleshooting/http-status-codes/cloudflare-1xxx-errors/error-1034/" |
-| IPv6 | false | 701 | 112 | 256 | 403 | unexpected status: 403 body: {"type":"https://developers.cloudflare.com/support/troubleshooting/http-status-codes/cloudflare-1xxx-errors/error-1034/" |
+| IPv4 | false | 1345 | 176 | 386 | 403 | unexpected status: 403 body: {"type":"https://developers.cloudflare.com/support/troubleshooting/http-status-codes/cloudflare-1xxx-errors/error-1034/" |
+| IPv6 | false | 1353 | 168 | 375 | 403 | unexpected status: 403 body: {"type":"https://developers.cloudflare.com/support/troubleshooting/http-status-codes/cloudflare-1xxx-errors/error-1034/" |
 
 ### 154.31.114.101:26214
 
@@ -921,8 +926,8 @@ The requested URL "&#91;no&#32;URL&#93;", is  |
 
 | 探针 | 状态 | 连接(ms) | TLS(ms) | HTTP(ms) | 状态码 | 错误信息 |
 |------|------|----------|---------|----------|--------|----------|
-| IPv4 | false | 417 | - | - | - | TLS Alert: level=2, desc=40 |
-| IPv6 | false | 414 | - | - | - | TLS Alert: level=2, desc=40 |
+| IPv4 | false | 752 | - | - | - | TLS Alert: level=2, desc=40 |
+| IPv6 | false | 754 | - | - | - | TLS Alert: level=2, desc=40 |
 
 ### 31.57.172.199:20002
 
@@ -949,12 +954,12 @@ The requested URL "&#91;no&#32;URL&#93;", is  |
 
 | 探针 | 状态 | 连接(ms) | TLS(ms) | HTTP(ms) | 状态码 | 错误信息 |
 |------|------|----------|---------|----------|--------|----------|
-| IPv4 | false | 109 | 109 | 215 | 400 | unexpected status: 400 body: <HTML><HEAD>
+| IPv4 | false | 162 | 166 | 325 | 400 | unexpected status: 400 body: <HTML><HEAD>
 <TITLE>Invalid URL</TITLE>
 </HEAD><BODY>
 <H1>Invalid URL</H1>
 The requested URL "&#91;no&#32;URL&#93;", is  |
-| IPv6 | false | 108 | 110 | 220 | 400 | unexpected status: 400 body: <HTML><HEAD>
+| IPv6 | false | 162 | 165 | 324 | 400 | unexpected status: 400 body: <HTML><HEAD>
 <TITLE>Invalid URL</TITLE>
 </HEAD><BODY>
 <H1>Invalid URL</H1>
@@ -964,8 +969,15 @@ The requested URL "&#91;no&#32;URL&#93;", is  |
 
 | 探针 | 状态 | 连接(ms) | TLS(ms) | HTTP(ms) | 状态码 | 错误信息 |
 |------|------|----------|---------|----------|--------|----------|
-| IPv4 | false | 108 | 109 | 210 | 200 | invalid json response: Unexpected token '<', "<!DOCTYPE "... is not valid JSON |
-| IPv6 | false | 108 | 109 | 208 | 200 | invalid json response: Unexpected token '<', "<!DOCTYPE "... is not valid JSON |
+| IPv4 | false | 161 | 161 | 318 | 200 | invalid json response: Unexpected token '<', "<!DOCTYPE "... is not valid JSON |
+| IPv6 | false | 162 | 161 | 319 | 200 | invalid json response: Unexpected token '<', "<!DOCTYPE "... is not valid JSON |
+
+### 103.47.186.14:443
+
+| 探针 | 状态 | 连接(ms) | TLS(ms) | HTTP(ms) | 状态码 | 错误信息 |
+|------|------|----------|---------|----------|--------|----------|
+| IPv4 | false | - | - | - | - | tcp connect timeout after 9999ms |
+| IPv6 | false | - | - | - | - | tcp connect timeout after 9999ms |
 
 ### 103.47.186.4:443
 
@@ -1051,13 +1063,6 @@ The requested URL "&#91;no&#32;URL&#93;", is  |
 | IPv4 | false | - | - | - | - | tcp connect timeout after 9999ms |
 | IPv6 | false | - | - | - | - | tcp connect timeout after 9999ms |
 
-### 14.137.235.132:443
-
-| 探针 | 状态 | 连接(ms) | TLS(ms) | HTTP(ms) | 状态码 | 错误信息 |
-|------|------|----------|---------|----------|--------|----------|
-| IPv4 | false | - | - | - | - | proxy request failed, cannot connect to the specified address. It looks like you might be trying to connect to a HTTP-based service — consider using fetch instead |
-| IPv6 | false | - | - | - | - | proxy request failed, cannot connect to the specified address. It looks like you might be trying to connect to a HTTP-based service — consider using fetch instead |
-
 ### 140.235.37.198:443
 
 | 探针 | 状态 | 连接(ms) | TLS(ms) | HTTP(ms) | 状态码 | 错误信息 |
@@ -1085,6 +1090,13 @@ The requested URL "&#91;no&#32;URL&#93;", is  |
 |------|------|----------|---------|----------|--------|----------|
 | IPv4 | false | - | - | - | - | proxy request failed, cannot connect to the specified address. It looks like you might be trying to connect to a HTTP-based service — consider using fetch instead |
 | IPv6 | false | - | - | - | - | proxy request failed, cannot connect to the specified address. It looks like you might be trying to connect to a HTTP-based service — consider using fetch instead |
+
+### 154.19.187.39:443
+
+| 探针 | 状态 | 连接(ms) | TLS(ms) | HTTP(ms) | 状态码 | 错误信息 |
+|------|------|----------|---------|----------|--------|----------|
+| IPv4 | false | 6627 | 672 | 328 | 403 | unexpected status: 403 body: {"type":"https://developers.cloudflare.com/support/troubleshooting/http-status-codes/cloudflare-1xxx-errors/error-1034/" |
+| IPv6 | false | 5608 | 929 | 2652 | 403 | unexpected status: 403 body: {"type":"https://developers.cloudflare.com/support/troubleshooting/http-status-codes/cloudflare-1xxx-errors/error-1034/" |
 
 ### 154.36.155.155:443
 
@@ -1122,4 +1134,4 @@ The requested URL "&#91;no&#32;URL&#93;", is  |
 | IPv6 | false | - | - | - | - | tcp connect timeout after 9999ms |
 
 
-> 本报告由 GitHub Actions 自动生成，每日 2026-07-18 更新。
+> 本报告由 GitHub Actions 自动生成，每日 2026-07-19 更新。
