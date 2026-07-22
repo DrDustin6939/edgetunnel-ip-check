@@ -4,6 +4,7 @@
 172.104.80.248:443#JP Tokyo AS63949 Akamai Connected Cloud / Linode
 172.104.81.253:443#JP Tokyo AS63949 Akamai Connected Cloud / Linode
 172.104.86.229:443#JP Tokyo AS63949 Akamai Connected Cloud / Linode
+155.248.181.189:443#JP Inzai AS31898 Oracle Public Cloud
 45.129.8.76:443#JP Tokyo AS3258 xTom Japan Corporation
 45.251.240.205:443#JP Osaka AS4785 Hongkong Wen Jing Network Limited
 64.176.42.143:443#JP Osaka AS20473 The Constant Company, LLC
@@ -19,9 +20,6 @@
 160.16.62.84:443#JP Tokyo AS9370 SAKURA Internet Inc.
 160.251.210.41:443#JP Osaka AS58791 GMO Internet, Inc.
 161.33.197.118:443#JP Inzai AS31898 Oracle Corporation
-5.104.83.202:443#JP Ebara AS141995 Contabo Asia Private Limited
-80.96.156.58:443#JP Tokyo AS9009 Virtono Networks SRL
-89.125.244.207:443#JP Tokyo AS26383 Baxet Group Inc.
 139.162.74.90:4433#JP Tokyo AS63949 Akamai Connected Cloud / Linode
 140.83.50.165:443#JP Osaka AS13335 Cloudflare London, LLC
 151.241.128.175:443#JP Tokyo AS11161 DIAMOND IP BROKERS FZCO
@@ -44,7 +42,6 @@
 154.36.153.189:4432#JP Ebara AS979 PSINet, Inc.
 154.36.181.182:6066#JP Tokyo AS209557 Geelinx WAN @ Tokyo, Japan
 155.248.177.246:50443#JP Inzai AS31898 Oracle Public Cloud
-172.104.110.10:555#JP Tokyo AS63949 Linode
 172.237.30.89:449#JP Tokyo AS63949 Linode
 212.135.211.175:6868#JP Ebara AS216211 CYBERJET PTE. LTD.
 45.143.233.247:65180#JP Tokyo AS3258 xTom Japan Corporation
