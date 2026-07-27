@@ -9,8 +9,6 @@
 160.16.57.18:443#JP Tokyo AS9370 SAKURA Internet Inc.
 160.16.59.9:443#JP Tokyo AS9370 SAKURA Internet Inc.
 161.248.254.27:443#JP Tokyo AS136557 SmartHost LLC
-166.88.97.239:443#JP Osaka AS149440 Evoxt.com
-167.179.64.101:443#JP Ōi AS20473 The Constant Company, LLC
 45.129.8.76:443#JP Tokyo AS3258 xTom Japan Corporation
 45.251.240.205:443#JP Osaka AS4785 Hongkong Wen Jing Network Limited
 64.176.42.143:443#JP Osaka AS20473 The Constant Company, LLC
@@ -26,8 +24,6 @@
 160.16.62.84:443#JP Tokyo AS9370 SAKURA Internet Inc.
 160.251.210.41:443#JP Osaka AS58791 GMO Internet, Inc.
 161.33.197.118:443#JP Inzai AS31898 Oracle Corporation
-5.104.83.202:443#JP Ebara AS141995 Contabo Asia Private Limited
-80.96.156.58:443#JP Tokyo AS9009 Virtono Networks SRL
 139.162.74.90:4433#JP Tokyo AS63949 Akamai Connected Cloud / Linode
 140.83.50.165:443#JP Osaka AS13335 Cloudflare London, LLC
 151.241.128.175:443#JP Tokyo AS11161 DIAMOND IP BROKERS FZCO
