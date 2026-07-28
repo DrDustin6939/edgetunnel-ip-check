@@ -10,7 +10,6 @@
 160.16.59.9:443#JP Tokyo AS9370 SAKURA Internet Inc.
 161.248.254.27:443#JP Tokyo AS136557 SmartHost LLC
 45.129.8.76:443#JP Tokyo AS3258 xTom Japan Corporation
-45.251.240.205:443#JP Osaka AS4785 Hongkong Wen Jing Network Limited
 64.176.42.143:443#JP Osaka AS20473 The Constant Company, LLC
 66.42.37.41:443#JP Ōi AS20473 Vultr Holdings, LLC
 153.121.32.71:443#JP Tokyo AS9370 SAKURA Internet Inc.
