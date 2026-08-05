@@ -11,7 +11,6 @@
 153.121.32.71:443#JP Tokyo AS9370 SAKURA Internet Inc.
 198.13.60.163:443#JP Ōi AS20473 The Constant Company, LLC
 207.148.108.85:443#JP Ōi AS20473 Vultr Holdings, LLC
-207.148.112.179:443#JP Ōi AS20473 The Constant Company, LLC
 133.18.140.38:443#JP Sugai AS24282 KAGOYA JAPAN Inc.
 141.11.139.221:443#JP Kanda-jinbōchō AS212336 ByteVirt LLC
 141.147.174.243:443#JP Inzai AS31898 Oracle Corporation
@@ -19,16 +18,13 @@
 154.83.91.134:443#JP Tokyo AS61112 AkileCloud LLC
 142.91.108.54:443#JP Tokyo AS134351 Leaseweb Japan K.K.
 150.230.212.247:443#JP Inzai AS31898 Oracle Corporation
-154.31.113.22:443#JP Tokyo AS906 DMIT Cloud Service - Tokyo
 160.16.62.84:443#JP Tokyo AS9370 SAKURA Internet Inc.
 160.251.210.41:443#JP Osaka AS58791 GMO Internet, Inc.
 161.33.197.118:443#JP Inzai AS31898 Oracle Corporation
-5.104.83.202:443#JP Ebara AS141995 Contabo Asia Private Limited
-80.96.156.58:443#JP Tokyo AS9009 Virtono Networks SRL
 139.162.74.90:4433#JP Tokyo AS63949 Akamai Connected Cloud / Linode
 140.83.50.165:443#JP Osaka AS13335 Cloudflare London, LLC
 153.121.45.101:443#JP Tokyo AS9370 SAKURA Internet Inc.
-158.101.139.31:7000#JP Inzai AS31898 Oracle Public Cloud
+212.135.210.195:14430#JP Ebara AS216211 CYBERJET PTE. LTD.
 38.207.130.136:443#JP Tokyo AS61112 Nearoute Limited
 138.2.20.58:666#JP Inzai AS31898 Oracle Corporation
 151.242.74.169:10443#JP Tokyo AS63473 HostHatch Tokyo
