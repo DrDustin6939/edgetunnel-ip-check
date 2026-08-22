@@ -1,6 +1,8 @@
 104.238.151.14:443#JP Ōi AS20473 Vultr Holdings, LLC
 108.160.131.197:443#JP Ōi AS20473 Vultr Holdings, LLC
 156.226.168.122:8001#JP Tokyo AS61112 AkileCloud LLC
+155.248.181.189:443#JP Inzai AS31898 Oracle Public Cloud
+45.129.8.76:443#JP Tokyo AS3258 xTom Japan Corporation
 64.176.42.143:443#JP Osaka AS20473 The Constant Company, LLC
 153.121.32.71:443#JP Tokyo AS9370 SAKURA Internet Inc.
 198.13.60.163:443#JP Ōi AS20473 The Constant Company, LLC
@@ -19,6 +21,7 @@
 139.162.83.190:20205#JP Tokyo AS63949 Akamai Connected Cloud / Linode
 141.147.152.229:23333#JP Osaka AS31898 Oracle Corporation
 147.78.242.33:8503#JP Tokyo AS6939 Hurricane Electric LLC
-155.248.177.246:50443#JP Inzai AS31898 Oracle Public Cloud
+154.36.153.189:4432#JP Ebara AS979 PSINet, Inc.
+172.104.110.10:555#JP Tokyo AS63949 Linode
 132.145.126.33:443#JP Inzai AS31898 Oracle Public Cloud
 147.79.20.197:443#JP Kanda-jinbōchō AS51847 ByteVirt LLC
