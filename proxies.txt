@@ -6,18 +6,13 @@
 172.104.81.253:443#JP Tokyo AS63949 Akamai Connected Cloud / Linode
 172.104.86.229:443#JP Tokyo AS63949 Akamai Connected Cloud / Linode
 155.248.181.189:443#JP Inzai AS31898 Oracle Public Cloud
-45.129.8.76:443#JP Tokyo AS3258 xTom Japan Corporation
+158.51.110.12:443#JP Kanda-jinbōchō AS18526 DDPS Networks, LLC
 64.176.42.143:443#JP Osaka AS20473 The Constant Company, LLC
-153.121.32.71:443#JP Tokyo AS9370 SAKURA Internet Inc.
 198.13.60.163:443#JP Ōi AS20473 The Constant Company, LLC
 207.148.108.85:443#JP Ōi AS20473 Vultr Holdings, LLC
 141.147.174.243:443#JP Inzai AS31898 Oracle Corporation
-153.121.76.150:443#JP Tokyo AS9370 SAKURA Internet Inc.
-154.83.91.134:443#JP Tokyo AS61112 AkileCloud LLC
 142.91.108.54:443#JP Tokyo AS134351 Leaseweb Japan K.K.
 150.230.212.247:443#JP Inzai AS31898 Oracle Corporation
-160.16.62.84:443#JP Tokyo AS9370 SAKURA Internet Inc.
-160.251.210.41:443#JP Osaka AS58791 GMO Internet, Inc.
 139.162.74.90:4433#JP Tokyo AS63949 Akamai Connected Cloud / Linode
 140.83.50.165:443#JP Osaka AS13335 Cloudflare London, LLC
 153.121.45.101:443#JP Tokyo AS9370 SAKURA Internet Inc.
