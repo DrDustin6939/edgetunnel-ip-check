@@ -16,6 +16,7 @@
 140.83.50.165:443#JP Osaka AS13335 Cloudflare London, LLC
 153.121.45.101:443#JP Tokyo AS9370 SAKURA Internet Inc.
 192.243.127.102:443#JP Osaka AS25820 IT7 Networks Inc
+38.207.130.136:443#JP Tokyo AS61112 Nearoute Limited
 139.162.83.106:20205#JP Tokyo AS63949 Akamai Connected Cloud / Linode
 139.162.83.190:20205#JP Tokyo AS63949 Akamai Connected Cloud / Linode
 141.147.152.229:23333#JP Osaka AS31898 Oracle Corporation
