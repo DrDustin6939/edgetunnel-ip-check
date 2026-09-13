@@ -17,3 +17,5 @@
 141.147.152.229:23333#JP Osaka AS31898 Oracle Corporation
 147.78.242.33:8503#JP Tokyo AS6939 Hurricane Electric LLC
 154.36.153.189:4432#JP Ebara AS979 PSINet, Inc.
+132.145.126.33:443#JP Inzai AS31898 Oracle Public Cloud
+147.79.20.197:443#JP Kanda-jinbōchō AS51847 ByteVirt LLC
