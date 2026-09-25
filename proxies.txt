@@ -1,6 +1,4 @@
 104.238.151.14:443#JP Ōi AS20473 Vultr Holdings, LLC
-108.160.131.197:443#JP Ōi AS20473 Vultr Holdings, LLC
-156.226.168.122:8001#JP Tokyo AS61112 AkileCloud LLC
 155.248.181.189:443#JP Inzai AS31898 Oracle Public Cloud
 141.147.174.243:443#JP Inzai AS31898 Oracle Corporation
 150.230.212.247:443#JP Inzai AS31898 Oracle Corporation
