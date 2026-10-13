@@ -7,7 +7,6 @@
 139.162.74.90:4433#JP Tokyo AS63949 Akamai Connected Cloud / Linode
 140.83.50.165:443#JP Osaka AS13335 Cloudflare London, LLC
 153.121.45.101:443#JP Tokyo AS9370 SAKURA Internet Inc.
-192.243.127.102:443#JP Osaka AS25820 IT7 Networks Inc
 151.242.74.169:10443#JP Tokyo AS63473 HostHatch Tokyo
 147.78.242.33:8503#JP Tokyo AS6939 Hurricane Electric LLC
 132.145.126.33:443#JP Inzai AS31898 Oracle Public Cloud
