@@ -14,3 +14,4 @@
 151.242.74.169:10443#JP Tokyo AS63473 HostHatch Tokyo
 147.78.242.33:8503#JP Tokyo AS6939 Hurricane Electric LLC
 132.145.126.33:443#JP Inzai AS31898 Oracle Public Cloud
+140.235.37.198:443#JP Kanda-jinbōchō AS51847 ByteVirt LLC
