@@ -1,6 +1,6 @@
 # 代理检测日报
 
-**检测时间**：2026-11-21 12:46:27 (北京时间)
+**检测时间**：2026-11-22 12:01:03 (北京时间)
 **并发数**：16
 
 ## 概况
@@ -8,9 +8,9 @@
 | 项目 | 数值 |
 |------|------|
 | 检测总数 | 196 |
-| 成功数量 | 14 |
-| 失败数量 | 182 |
-| 成功率 | 7.1% |
+| 成功数量 | 15 |
+| 失败数量 | 181 |
+| 成功率 | 7.7% |
 
 ---
 
@@ -18,20 +18,21 @@
 
 | 代理地址 | 端口 | 协议栈 | IPv4 | IPv6 | 响应时间 |
 |----------|------|--------|------|------|----------|
-| 104.238.151.14 | 443 | ipv4_only | true | false | 139ms |
-| 155.248.181.189 | 443 | ipv4_only | true | false | 148ms |
-| 109.107.137.212 | 443 | ipv6_only | false | true | 2712ms |
-| 141.147.174.243 | 443 | ipv6_only | false | true | 434ms |
-| 154.83.91.134 | 443 | ipv6_only | false | true | 2410ms |
-| 150.230.212.247 | 443 | ipv6_only | false | true | 139ms |
-| 139.162.74.90 | 4433 | ipv6_only | false | true | 143ms |
-| 140.83.50.165 | 443 | ipv6_only | false | true | 145ms |
-| 151.242.74.169 | 10443 | ipv6_only | false | true | 269ms |
-| 132.145.126.33 | 443 | ipv4_only | true | false | 175ms |
-| 140.235.37.198 | 443 | ipv6_only | false | true | 178ms |
-| 150.230.107.220 | 443 | ipv4_only | true | false | 446ms |
-| 151.145.78.30 | 443 | ipv4_only | true | false | 581ms |
-| 154.19.186.207 | 443 | ipv6_only | false | true | 712ms |
+| 104.238.151.14 | 443 | ipv4_only | true | false | 133ms |
+| 155.248.181.189 | 443 | ipv4_only | true | false | 140ms |
+| 109.107.137.212 | 443 | ipv6_only | false | true | 2693ms |
+| 141.147.174.243 | 443 | ipv6_only | false | true | 425ms |
+| 154.83.91.134 | 443 | ipv6_only | false | true | 2403ms |
+| 150.230.212.247 | 443 | ipv6_only | false | true | 150ms |
+| 139.162.74.90 | 4433 | ipv6_only | false | true | 147ms |
+| 140.83.50.165 | 443 | ipv6_only | false | true | 148ms |
+| 151.242.74.169 | 10443 | ipv6_only | false | true | 273ms |
+| 147.78.242.33 | 8503 | ipv6_only | false | true | 283ms |
+| 132.145.126.33 | 443 | ipv4_only | true | false | 152ms |
+| 140.235.37.198 | 443 | ipv6_only | false | true | 152ms |
+| 150.230.107.220 | 443 | ipv4_only | true | false | 431ms |
+| 151.145.78.30 | 443 | ipv4_only | true | false | 569ms |
+| 154.19.186.207 | 443 | ipv6_only | false | true | 703ms |
 
 ---
 
@@ -47,6 +48,7 @@
 139.162.74.90:4433#JP Tokyo AS63949 Akamai Connected Cloud / Linode
 140.83.50.165:443#JP Osaka AS13335 Cloudflare London, LLC
 151.242.74.169:10443#JP Tokyo AS63473 HostHatch Tokyo
+147.78.242.33:8503#JP Tokyo AS6939 Hurricane Electric LLC
 132.145.126.33:443#JP Inzai AS31898 Oracle Public Cloud
 140.235.37.198:443#JP Kanda-jinbōchō AS51847 ByteVirt LLC
 150.230.107.220:443#JP Inzai AS31898 Oracle Corporation
@@ -167,12 +169,12 @@
 
 | 探针 | 状态 | 连接(ms) | TLS(ms) | HTTP(ms) | 状态码 | 错误信息 |
 |------|------|----------|---------|----------|--------|----------|
-| IPv4 | false | 141 | 140 | 378 | 400 | unexpected status: 400 body: <HTML><HEAD>
+| IPv4 | false | 139 | 141 | 282 | 400 | unexpected status: 400 body: <HTML><HEAD>
 <TITLE>Invalid URL</TITLE>
 </HEAD><BODY>
 <H1>Invalid URL</H1>
 The requested URL "&#91;no&#32;URL&#93;", is  |
-| IPv6 | false | 141 | 141 | 379 | 400 | unexpected status: 400 body: <HTML><HEAD>
+| IPv6 | false | 139 | 141 | 282 | 400 | unexpected status: 400 body: <HTML><HEAD>
 <TITLE>Invalid URL</TITLE>
 </HEAD><BODY>
 <H1>Invalid URL</H1>
@@ -511,8 +513,8 @@ The requested URL "&#91;no&#32;URL&#93;", is  |
 
 | 探针 | 状态 | 连接(ms) | TLS(ms) | HTTP(ms) | 状态码 | 错误信息 |
 |------|------|----------|---------|----------|--------|----------|
-| IPv4 | false | 140 | 143 | 322 | 403 | unexpected status: 403 body: {"type":"https://developers.cloudflare.com/support/troubleshooting/http-status-codes/cloudflare-1xxx-errors/error-1034/" |
-| IPv6 | false | 136 | 147 | 316 | 403 | unexpected status: 403 body: {"type":"https://developers.cloudflare.com/support/troubleshooting/http-status-codes/cloudflare-1xxx-errors/error-1034/" |
+| IPv4 | false | 134 | 138 | 312 | 403 | unexpected status: 403 body: {"type":"https://developers.cloudflare.com/support/troubleshooting/http-status-codes/cloudflare-1xxx-errors/error-1034/" |
+| IPv6 | false | 137 | 141 | 323 | 403 | unexpected status: 403 body: {"type":"https://developers.cloudflare.com/support/troubleshooting/http-status-codes/cloudflare-1xxx-errors/error-1034/" |
 
 ### 89.125.244.195:443
 
@@ -532,8 +534,8 @@ The requested URL "&#91;no&#32;URL&#93;", is  |
 
 | 探针 | 状态 | 连接(ms) | TLS(ms) | HTTP(ms) | 状态码 | 错误信息 |
 |------|------|----------|---------|----------|--------|----------|
-| IPv4 | false | 132 | 139 | 305 | 403 | unexpected status: 403 body: {"type":"https://developers.cloudflare.com/support/troubleshooting/http-status-codes/cloudflare-1xxx-errors/error-1034/" |
-| IPv6 | false | 132 | 149 | 302 | 403 | unexpected status: 403 body: {"type":"https://developers.cloudflare.com/support/troubleshooting/http-status-codes/cloudflare-1xxx-errors/error-1034/" |
+| IPv4 | false | 132 | 148 | 322 | 403 | unexpected status: 403 body: {"type":"https://developers.cloudflare.com/support/troubleshooting/http-status-codes/cloudflare-1xxx-errors/error-1034/" |
+| IPv6 | false | 131 | 149 | 317 | 403 | unexpected status: 403 body: {"type":"https://developers.cloudflare.com/support/troubleshooting/http-status-codes/cloudflare-1xxx-errors/error-1034/" |
 
 ### 153.121.32.71:443
 
@@ -644,8 +646,8 @@ The requested URL "&#91;no&#32;URL&#93;", is  |
 
 | 探针 | 状态 | 连接(ms) | TLS(ms) | HTTP(ms) | 状态码 | 错误信息 |
 |------|------|----------|---------|----------|--------|----------|
-| IPv4 | false | 152 | - | - | - | TLS Alert: level=2, desc=80 |
-| IPv6 | false | 154 | - | - | - | TLS Alert: level=2, desc=80 |
+| IPv4 | false | 149 | - | - | - | TLS Alert: level=2, desc=80 |
+| IPv6 | false | 150 | - | - | - | TLS Alert: level=2, desc=80 |
 
 ### 138.3.220.224:443
 
@@ -840,12 +842,12 @@ The requested URL "&#91;no&#32;URL&#93;", is  |
 
 | 探针 | 状态 | 连接(ms) | TLS(ms) | HTTP(ms) | 状态码 | 错误信息 |
 |------|------|----------|---------|----------|--------|----------|
-| IPv4 | false | 133 | 129 | 272 | 400 | unexpected status: 400 body: <HTML><HEAD>
+| IPv4 | false | 138 | 135 | 283 | 400 | unexpected status: 400 body: <HTML><HEAD>
 <TITLE>Invalid URL</TITLE>
 </HEAD><BODY>
 <H1>Invalid URL</H1>
 The requested URL "&#91;no&#32;URL&#93;", is  |
-| IPv6 | false | 133 | 129 | 260 | 400 | unexpected status: 400 body: <HTML><HEAD>
+| IPv6 | false | 138 | 135 | 263 | 400 | unexpected status: 400 body: <HTML><HEAD>
 <TITLE>Invalid URL</TITLE>
 </HEAD><BODY>
 <H1>Invalid URL</H1>
@@ -855,12 +857,12 @@ The requested URL "&#91;no&#32;URL&#93;", is  |
 
 | 探针 | 状态 | 连接(ms) | TLS(ms) | HTTP(ms) | 状态码 | 错误信息 |
 |------|------|----------|---------|----------|--------|----------|
-| IPv4 | false | 263 | 139 | 287 | 400 | unexpected status: 400 body: <HTML><HEAD>
+| IPv4 | false | 273 | 141 | 274 | 400 | unexpected status: 400 body: <HTML><HEAD>
 <TITLE>Invalid URL</TITLE>
 </HEAD><BODY>
 <H1>Invalid URL</H1>
 The requested URL "&#91;no&#32;URL&#93;", is  |
-| IPv6 | false | 262 | 139 | 276 | 400 | unexpected status: 400 body: <HTML><HEAD>
+| IPv6 | false | 273 | 142 | 397 | 400 | unexpected status: 400 body: <HTML><HEAD>
 <TITLE>Invalid URL</TITLE>
 </HEAD><BODY>
 <H1>Invalid URL</H1>
@@ -891,8 +893,8 @@ The requested URL "&#91;no&#32;URL&#93;", is  |
 
 | 探针 | 状态 | 连接(ms) | TLS(ms) | HTTP(ms) | 状态码 | 错误信息 |
 |------|------|----------|---------|----------|--------|----------|
-| IPv4 | false | 548 | 559 | 490 | 404 | unexpected status: 404 body: Not Found |
-| IPv6 | false | 548 | 571 | 498 | 404 | unexpected status: 404 body: Not Found |
+| IPv4 | false | 786 | 607 | 497 | 404 | unexpected status: 404 body: Not Found |
+| IPv6 | false | 785 | 614 | 496 | 404 | unexpected status: 404 body: Not Found |
 
 ### 158.101.139.31:7000
 
@@ -905,8 +907,8 @@ The requested URL "&#91;no&#32;URL&#93;", is  |
 
 | 探针 | 状态 | 连接(ms) | TLS(ms) | HTTP(ms) | 状态码 | 错误信息 |
 |------|------|----------|---------|----------|--------|----------|
-| IPv4 | false | 813 | 132 | 295 | - | empty response |
-| IPv6 | false | 817 | 133 | - | - | http read timeout after 9999ms |
+| IPv4 | false | 1047 | 130 | - | - | http read timeout after 9999ms |
+| IPv6 | false | 1124 | 130 | - | - | http read timeout after 9999ms |
 
 ### 172.105.212.126:10001
 
@@ -1059,15 +1061,15 @@ The requested URL "&#91;no&#32;URL&#93;", is  |
 
 | 探针 | 状态 | 连接(ms) | TLS(ms) | HTTP(ms) | 状态码 | 错误信息 |
 |------|------|----------|---------|----------|--------|----------|
-| IPv4 | false | - | - | - | - | tcp connect timeout after 9999ms |
-| IPv6 | false | - | - | - | - | tcp connect timeout after 9999ms |
+| IPv4 | false | - | - | - | - | proxy request failed, cannot connect to the specified address |
+| IPv6 | false | - | - | - | - | proxy request failed, cannot connect to the specified address |
 
 ### 139.162.83.190:20205
 
 | 探针 | 状态 | 连接(ms) | TLS(ms) | HTTP(ms) | 状态码 | 错误信息 |
 |------|------|----------|---------|----------|--------|----------|
-| IPv4 | false | - | - | - | - | tcp connect timeout after 9999ms |
-| IPv6 | false | - | - | - | - | tcp connect timeout after 9999ms |
+| IPv4 | false | - | - | - | - | proxy request failed, cannot connect to the specified address |
+| IPv6 | false | - | - | - | - | proxy request failed, cannot connect to the specified address |
 
 ### 140.83.63.132:10126
 
@@ -1077,13 +1079,6 @@ The requested URL "&#91;no&#32;URL&#93;", is  |
 | IPv6 | false | - | - | - | - | tcp connect timeout after 9999ms |
 
 ### 141.147.152.229:23333
-
-| 探针 | 状态 | 连接(ms) | TLS(ms) | HTTP(ms) | 状态码 | 错误信息 |
-|------|------|----------|---------|----------|--------|----------|
-| IPv4 | false | - | - | - | - | tcp connect timeout after 9999ms |
-| IPv6 | false | - | - | - | - | tcp connect timeout after 9999ms |
-
-### 147.78.242.33:8503
 
 | 探针 | 状态 | 连接(ms) | TLS(ms) | HTTP(ms) | 状态码 | 错误信息 |
 |------|------|----------|---------|----------|--------|----------|
@@ -1185,8 +1180,8 @@ The requested URL "&#91;no&#32;URL&#93;", is  |
 
 | 探针 | 状态 | 连接(ms) | TLS(ms) | HTTP(ms) | 状态码 | 错误信息 |
 |------|------|----------|---------|----------|--------|----------|
-| IPv4 | false | 139 | 143 | 273 | 200 | invalid json response: Unexpected token '<', "<!DOCTYPE "... is not valid JSON |
-| IPv6 | false | 143 | 140 | 276 | 200 | invalid json response: Unexpected token '<', "<!DOCTYPE "... is not valid JSON |
+| IPv4 | false | 145 | 136 | 272 | 200 | invalid json response: Unexpected token '<', "<!DOCTYPE "... is not valid JSON |
+| IPv6 | false | 145 | 138 | 279 | 200 | invalid json response: Unexpected token '<', "<!DOCTYPE "... is not valid JSON |
 
 ### 103.47.186.14:443
 
@@ -1297,15 +1292,15 @@ The requested URL "&#91;no&#32;URL&#93;", is  |
 
 | 探针 | 状态 | 连接(ms) | TLS(ms) | HTTP(ms) | 状态码 | 错误信息 |
 |------|------|----------|---------|----------|--------|----------|
-| IPv4 | false | 312 | - | - | - | TLS Alert: level=2, desc=112 |
-| IPv6 | false | 312 | - | - | - | TLS Alert: level=2, desc=112 |
+| IPv4 | false | 292 | - | - | - | TLS Alert: level=2, desc=112 |
+| IPv6 | false | 292 | - | - | - | TLS Alert: level=2, desc=112 |
 
 ### 149.62.44.249:443
 
 | 探针 | 状态 | 连接(ms) | TLS(ms) | HTTP(ms) | 状态码 | 错误信息 |
 |------|------|----------|---------|----------|--------|----------|
-| IPv4 | false | 440 | - | - | - | TLS Alert: level=2, desc=80 |
-| IPv6 | false | 446 | - | - | - | TLS Alert: level=2, desc=80 |
+| IPv4 | false | 428 | - | - | - | TLS Alert: level=2, desc=80 |
+| IPv6 | false | 428 | - | - | - | TLS Alert: level=2, desc=80 |
 
 ### 154.19.186.134:443
 
@@ -1325,8 +1320,8 @@ The requested URL "&#91;no&#32;URL&#93;", is  |
 
 | 探针 | 状态 | 连接(ms) | TLS(ms) | HTTP(ms) | 状态码 | 错误信息 |
 |------|------|----------|---------|----------|--------|----------|
-| IPv4 | false | 981 | 300 | 272 | 404 | unexpected status: 404 body: Not Found - Request ID: 01M7Y6S74T1QSSBHF905VG3CSY |
-| IPv6 | false | 987 | 299 | 281 | 404 | unexpected status: 404 body: Not Found - Request ID: 01M7Y6S758BJ75TWGKYQ4N6DN9 |
+| IPv4 | false | 960 | 293 | 274 | 404 | unexpected status: 404 body: Not Found - Request ID: 01M80PJT28H2AQX8TENSS8YASZ |
+| IPv6 | false | 975 | 291 | 264 | 404 | unexpected status: 404 body: Not Found - Request ID: 01M80PJT2BA9NHRXGMMX1H9EEA |
 
 ### 154.36.176.84:443
 
@@ -1357,4 +1352,4 @@ The requested URL "&#91;no&#32;URL&#93;", is  |
 | IPv6 | false | - | - | - | - | tcp connect timeout after 9999ms |
 
 
-> 本报告由 GitHub Actions 自动生成，每日 2026-11-21 更新。
+> 本报告由 GitHub Actions 自动生成，每日 2026-11-22 更新。
